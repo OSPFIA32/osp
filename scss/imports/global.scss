@@ -1,5 +1,6 @@
 *{
 	font-family: arial;
+	outline: none;
 }
 
 *::selection{
@@ -40,3 +41,12 @@ hr.broad{
 .double-width{
 	width: 200%;
 }
+
+.templates{
+	display: none;
+}
+
+.width-50{width: 50% !important;}
+.width-100{width: 50% !important;}
+.width-33{width: 33.33333% !important;}
+.width-20{width: 20% !important;}
