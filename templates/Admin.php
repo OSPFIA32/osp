@@ -21,7 +21,7 @@
 				<a href="#" class="button bright logout right top-bar-item">Ausloggen</a>
 				<!--span class="username">aerotschkin</span-->
 			</div>
-			
+
 
 			<div class="side-bar left">
 				<hr class="broad" />
@@ -48,7 +48,7 @@
 			</div>
 
 			<div class="details-pane left">
-				
+
 			</div>
 		</div>
 
