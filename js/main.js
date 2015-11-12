@@ -46,7 +46,6 @@
 			return;
 		}
 
-
 		LoginManager.createUser(oData);
 		GuiManager.clear();
 
@@ -58,7 +57,8 @@
 		{
 			GuiManager.Group1.createGui();
 		}
-		else{
+		else
+		{
 			GuiManager.Group2.createGui();
 		}
 	}

@@ -1,0 +1,153 @@
+.webapp{
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+
+	.top-bar{
+		width: 100%;
+		height: $top-bar-height;
+		float: right;
+		box-sizing: border-box;
+		background: $flat-color;
+		color: $main-color;
+		box-shadow: 0px 7px 17px -5px rgba(0,0,0,0.75);
+		position: relative;
+		z-index: 200;
+
+		.top-dropdown-container{
+			width: 240px;
+			height: 100%;
+			padding: 10px;
+			background: $flat-color;
+			box-sizing: border-box;
+			cursor: pointer;
+			float: left;
+
+			&:hover{
+				background: $bright-hover-background-color;
+			}
+		}
+
+		.top-bar-container{
+			width: auto;
+			height: 100%;
+			padding: 10px;
+			background: $flat-color;
+			box-sizing: border-box;
+
+			&:hover{
+				background: $bright-hover-background-color;
+			}
+		}
+
+		.username{
+			margin-top: 5px;
+			display: block;
+			font-weight: bold;
+			color: $main-color;
+		}
+
+		.add{
+			font-size: 30px;
+			padding: 0;
+			line-height: 50px;
+		}
+
+		.logout{
+			padding: 0 10px 0 10px;
+			line-height: 50px;
+			font-size: 15px;
+		}
+
+		.top-bar-item{
+			min-width: 50px;
+			height: 100%;
+			border-radius: 0;
+			text-align: center;
+		}
+	}
+
+	.side-bar{
+		width: $side-bar-width;
+		height: calc(100% - 50px);
+		box-sizing: border-box;
+		background: $flat-color;
+		box-shadow: 7px 0px 17px -5px rgba(0,0,0,0.75);
+		position: relative;
+		z-index: 100;
+
+		.overview-item{
+			width: 100%;
+			height: 50px;
+			padding: 10px;
+			background: $flat-color;
+			box-sizing: border-box;
+			cursor: pointer;
+
+			&:hover{
+				background: $bright-hover-background-color;
+			}
+
+			.title{
+				width: 100%;
+				display: block;
+				font-size: 13px;
+				font-weight: bold;
+				color: $darker-font-color;
+			}
+
+			.date{
+				width: 100%;
+				margin-top: 5px;
+				display: block;
+				font-size: 13px;
+				text-align: right;
+				color: $darker-font-color;
+			}
+
+			hr{
+				width: 80%;
+				margin: 5px auto 0 auto;
+				display: block;
+				position: relative;
+				bottom: 0;
+				border: none;
+				border-top: 1px solid $bright-hover-background-color;
+			}
+		}
+	}
+
+	.details-pane{
+		width: calc(100% - 200px);
+		height: calc(100% - 50px);
+		box-sizing: border-box;
+		background: #CCC;
+	}
+
+	.button{
+		width: auto;
+		height: 30px;
+		padding: 5px 8px;
+		display: block;
+		border-radius: 5px;
+		// border: 1px solid $main-color;
+		box-sizing: border-box;
+		background: $main-color;
+		color: $bright-font-color;
+		font-weight: bold;
+		transition: background 0.3s, color 0.3s;
+
+		&.bright{
+			background: #FFF;
+			color: $main-color;
+
+			&:hover{
+				background: $bright-hover-background-color;
+			}
+		}
+
+		&:hover{
+			background: $main-color-dark;
+		}
+	}
+}
