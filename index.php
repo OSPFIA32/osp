@@ -14,6 +14,7 @@ require_once 'php/Classes/Router.php';
 
 // Controller
 require_once 'php/Controller/Login.php';
+require_once 'php/Controller/Events.php';
 
 // API
 
