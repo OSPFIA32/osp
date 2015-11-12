@@ -160,6 +160,7 @@
 		box-sizing: border-box;
 		box-shadow: 7px 7px 17px -5px rgba(0,0,0,0.75);
 		overflow-y: auto;
+		border-radius: 10px;
 
 		h1{
 			margin: 0;
@@ -188,12 +189,13 @@
 				}
 			}
 
-			input[type="submit"]{
+			input[type="submit"], input[type="button"]{
 				width: auto;
 				height: 40px;
 				margin-top: 20px;
+				margin-right: 5px;
 				padding: 0 15px 0 15px;
-				font-size: 18px;
+				font-size: 15px;
 				color: $bright-font-color;
 				background: $main-color;
 				box-sizing: border-box;
