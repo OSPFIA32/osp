@@ -18,6 +18,8 @@ class Router {
 
       // Emulated routes
       switch($request['route']) {
+        case 'events':
+          return new ControllerEvents($request);
         case 'login':
           return new ControllerLogin($request);
         default:
