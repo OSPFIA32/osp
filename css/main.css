@@ -316,7 +316,8 @@ div.dropdown {
     background: #FFF;
     box-sizing: border-box;
     box-shadow: 7px 7px 17px -5px rgba(0, 0, 0, 0.75);
-    overflow-y: auto; }
+    overflow-y: auto;
+    border-radius: 10px; }
     .webapp .inner h1 {
       margin: 0;
       font-size: 30px;
@@ -337,12 +338,13 @@ div.dropdown {
       .webapp .inner form input[type="text"]:focus {
         border: 1px solid #822D6E;
         background: #FFF; }
-    .webapp .inner form input[type="submit"] {
+    .webapp .inner form input[type="submit"], .webapp .inner form input[type="button"] {
       width: auto;
       height: 40px;
       margin-top: 20px;
+      margin-right: 5px;
       padding: 0 15px 0 15px;
-      font-size: 18px;
+      font-size: 15px;
       color: #CCC;
       background: #822D6E;
       box-sizing: border-box;
@@ -350,10 +352,10 @@ div.dropdown {
       border: none;
       font-weight: bold;
       transition: all 0.3s linear; }
-      .webapp .inner form input[type="submit"]:focus {
+      .webapp .inner form input[type="submit"]:focus, .webapp .inner form input[type="button"]:focus {
         background: #682458;
         color: #FFF; }
-      .webapp .inner form input[type="submit"]:hover {
+      .webapp .inner form input[type="submit"]:hover, .webapp .inner form input[type="button"]:hover {
         background: #682458;
         color: #FFF; }
     .webapp .inner form textarea {
