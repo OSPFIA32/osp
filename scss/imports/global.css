@@ -1,21 +1,21 @@
 /*
 Error: Undefined variable: "$selected-color".
-        on line 6 of C:\Users\Artur\Dropbox\Silo\OSP\scss\imports\global.scss
+        on line 7 of C:\Users\Artur\Dropbox\Silo\OSP\scss\imports\global.scss
 
-1: *{
 2: 	font-family: arial;
-3: }
-4: 
-5: *::selection{
-6: 	background: $selected-color;
-7: 	color: #FFF;
-8: }
-9: 
-10: html, body{
-11: 	width: 100%;
+3: 	outline: none;
+4: }
+5: 
+6: *::selection{
+7: 	background: $selected-color;
+8: 	color: #FFF;
+9: }
+10: 
+11: html, body{
+12: 	width: 100%;
 
 Backtrace:
-C:\Users\Artur\Dropbox\Silo\OSP\scss\imports\global.scss:6
+C:\Users\Artur\Dropbox\Silo\OSP\scss\imports\global.scss:7
 D:/PROGRAMM DATEN/Software/Koala/rubygems/gems/sass-3.4.9/lib/sass/script/tree/variable.rb:49:in `_perform'
 D:/PROGRAMM DATEN/Software/Koala/rubygems/gems/sass-3.4.9/lib/sass/script/tree/node.rb:50:in `perform'
 D:/PROGRAMM DATEN/Software/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:384:in `visit_prop'
@@ -62,4 +62,4 @@ D:/PROGRAMM DATEN/Software/Koala/bin/sass:18:in `<main>'
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$selected-color\".\A         on line 6 of C:\Users\Artur\Dropbox\Silo\OSP\scss\imports\global.scss\A \A 1: *{\A 2: 	font-family: arial;\A 3: }\A 4: \A 5: *::selection{\A 6: 	background: $selected-color;\A 7: 	color: #FFF;\A 8: }\A 9: \A 10: html, body{\A 11: 	width: 100%;"; }
+  content: "Error: Undefined variable: \"$selected-color\".\A         on line 7 of C:\Users\Artur\Dropbox\Silo\OSP\scss\imports\global.scss\A \A 2: 	font-family: arial;\A 3: 	outline: none;\A 4: }\A 5: \A 6: *::selection{\A 7: 	background: $selected-color;\A 8: 	color: #FFF;\A 9: }\A 10: \A 11: html, body{\A 12: 	width: 100%;"; }

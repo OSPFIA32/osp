@@ -1,25 +1,8 @@
 (function($, window, undefined)
 {
-	/** @namespace */
-	var LoginManager 	= {};
 
 	/** @namespace */
-	var GuiManager 		= {};
-		/** 
-		 * @namespace
-		 * @member
-		 */
-		GuiManager.Admin 	= {};
-		/** 
-		 * @namespace
-		 * @member
-		 */
-		GuiManager.Group1 	= {};
-		/** 
-		 * @namespace
-		 * @member
-		 */
-		GuiManager.Group2 	= {};
+	var LoginManager 	= {};
 
 	/**
 	 * Initialisiert dem {LoginManager}
@@ -111,17 +94,5 @@
 		this.sAccessToken 	= settings.token 		|| null;
 		this.nRightGroup 	= settings.group 		|| null;
 	}
-
-	GuiManager.clear = function()
-	{
-
-	}
-
-	GuiManager.Admin.createGui = function()
-	{
-
-	}
-
-	LoginManager.init();
 
 })(jQuery, window, undefined)
