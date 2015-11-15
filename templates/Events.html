@@ -5,6 +5,7 @@
         <title>Lerhmittelverwaltung</title>
         <meta name="description" content="Lerhmittelverwaltung">
         <link rel="stylesheet" href="../css/normalize.css">
+        <link rel="stylesheet" href="../css/jquery.datetimepicker.css">
         <link rel="stylesheet" href="../css/main.css">
         <script src="../js/jquery.js"></script>
     </head>
@@ -61,13 +62,31 @@
                     <input type="text" name="name" placeholder="Name der Veranstaltung" class="width-50" />
                     <input type="file" name="image" accept="image/*" hidden="hidden" />
                     <textarea name="description" placeholder="Beschreibung der Veranstaltung"></textarea>
+                    <!--<input type="datetime" name="startDate" />-->
+                    <!--<input type="datetime" name="endDate" />-->
+                    <input type="text" name="startDate" class="datetimepicker">
+                    <br>
                     <input type="submit" value="Speichern" />
                 </form>
             </div>
 
         </div>
 
+        <script src="../js/plugins/jquery.datetimepicker.full.js"></script>
         <script src="../js/layout.js"></script>
         <script src="../js/GuiManager.js"></script>
+
+        <script>
+            $('.datetimepicker').datetimepicker({
+                dayOfWeekStart : 1,
+                lang           : 'de',
+                startDate      : '2015/11/15'
+            });
+
+            $('.datetimepicker').datetimepicker({
+                value : '2015/04/15 05:03',
+                step  : 10
+            });
+        </script>
     </body>
 </html>

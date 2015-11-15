@@ -1,83 +1,86 @@
 *{
-	font-family: arial;
-	outline: none;
+    font-family : arial;
+    outline     : none;
 }
 
 *::selection{
-	background: $selected-color;
-	color: #FFF;
+    background : $selected-color;
+    color      : #FFFFFF;
 }
 
 html, body{
-	width: 100%;
-	height: 100%;
-	box-sizing: border-box;
+    width      : 100%;
+    height     : 100%;
+    box-sizing : border-box;
 }
 
 a{
-	text-decoration: none;
+    text-decoration : none;
 }
 
 .right{
-	float: right;
+    float : right;
 }
 
 .left{
-	float: left;
+    float : left;
 }
 
 .transition-300{
-	transition: all 0.3s linear;
+    transition : all 0.3s linear;
 }
 
 hr.broad{
-	width: 100%;
-	height: 10px;
-	margin: 0;
-	background: $main-color;
-	border: none;
+    width      : 100%;
+    height     : 10px;
+    margin     : 0;
+    background : $main-color;
+    border     : none;
 }
 
 .double-width{
-	width: 200%;
+    width : 200%;
 }
 
 .templates{
-	display: none;
+    display : none;
 }
 
-.width-50{width: 50% !important;}
-.width-100{width: 50% !important;}
-.width-33{width: 33.33333% !important;}
-.width-20{width: 20% !important;}
+.width-50{ width : 50% !important; }
+
+.width-100{ width : 50% !important; }
+
+.width-33{ width : 33.33333% !important; }
+
+.width-20{ width : 20% !important; }
 
 .clearer{
-	clear: both;
-	float: none;
+    clear : both;
+    float : none;
 }
 
 .button{
-	width: auto;
-	height: 30px;
-	padding: 5px 8px;
-	display: block;
-	border-radius: 5px;
-	box-sizing: border-box;
-	background: $main-color;
-	color: $bright-font-color;
-	font-weight: bold;
-	transition: all 0.3s linear;
+    width         : auto;
+    height        : 30px;
+    padding       : 5px 8px;
+    display       : block;
+    border-radius : 5px;
+    box-sizing    : border-box;
+    background    : $main-color;
+    color         : $bright-font-color;
+    font-weight   : bold;
+    transition    : all 0.3s linear;
 
-	&.bright{
-		background: #FFF;
-		color: $main-color;
+    &.bright{
+        background : #FFFFFF;
+        color      : $main-color;
 
-		&:hover{
-			background: $bright-hover-background-color;
-		}
-	}
+        &:hover{
+            background : $bright-hover-background-color;
+        }
+    }
 
-	&:hover{
-		background: $main-color-dark;
-	}
+    &:hover{
+        background : $main-color-dark;
+    }
 }

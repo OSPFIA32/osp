@@ -15,6 +15,12 @@
         window.Layout.dropDown();
         window.Layout.rangeSlider();
         window.Layout.filePicker();
+
+        $('.datetimepicker').datetimepicker({
+            dayOfWeekStart : 1,
+            lang           : 'de',
+            startDate      : '2015/11/15'
+        });
     }
 
     window.Layout.removeAll = function()

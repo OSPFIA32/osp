@@ -33,13 +33,13 @@
     }
 
     .path{
-        width : calc(100% - 150px);
-        height: 100%;
-        padding-left: 10px;
-        display: block;
-        line-height: 40px;
-        float : left;
-        font-size: 18px;
-        color : $form-font-color;
+        width        : calc(100% - 150px);
+        height       : 100%;
+        padding-left : 10px;
+        display      : block;
+        line-height  : 40px;
+        float        : left;
+        font-size    : 18px;
+        color        : $form-font-color;
     }
 }
