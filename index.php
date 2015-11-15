@@ -17,11 +17,13 @@ require_once 'php/Controller/Login.php';
 require_once 'php/Controller/Events.php';
 require_once 'php/Controller/Default.php';
 
-// API
+// REST API
+require_once 'php/Controller/REST/User.php';
 
+// LDAP API
 
 // Repositories
-
+require_once 'php/Repositories/UserRepository.php';
 
 // View
 require_once 'php/Classes/View.php';
