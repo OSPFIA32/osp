@@ -229,18 +229,18 @@ div.dropdown .selected-item {
   border: none;
   box-sizing: border-box;
   border-radius: 10px;
-  color: #2D2D2D;
+  color: #2d2d2d;
   outline: none;
-  background: #CCCCCC;
+  background: #DDD;
 }
 .login-area .login form#login input:focus {
-  background: #FFFFFF;
+  background: #FFF;
   border: 1px solid #822D6E;
 }
 .login-area .login form#login input[type='submit'] {
   margin: 0;
   background: #822D6E;
-  color: #CCCCCC;
+  color: #CCC;
   font-weight: bold;
 }
 .login-area .login form#login input[type='submit']:hover {
