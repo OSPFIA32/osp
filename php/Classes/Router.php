@@ -33,6 +33,8 @@ class Router {
     switch($request['model']) {
       case 'user':
         return new ControllerRESTUser($request);
+      case 'events':
+        return new ControllerRESTEvent($request);
     }
   }
 }

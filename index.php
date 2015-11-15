@@ -19,11 +19,13 @@ require_once 'php/Controller/Default.php';
 
 // REST API
 require_once 'php/Controller/REST/User.php';
+require_once 'php/Controller/REST/Event.php';
 
 // LDAP API
 
 // Repositories
 require_once 'php/Repositories/UserRepository.php';
+require_once 'php/Repositories/EventRepository.php';
 
 // View
 require_once 'php/Classes/View.php';
