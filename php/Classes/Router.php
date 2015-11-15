@@ -12,7 +12,7 @@ class Router {
 
     if(!isset($request['route'])) {
 
-      return new ControllerLogin($request);
+      return new Controller($request);
     }
     else {
 
@@ -23,7 +23,7 @@ class Router {
         case 'login':
           return new ControllerLogin($request);
         default:
-          return null;
+          return new ControllerDefault($request);
       }
     }
   }
