@@ -1,204 +1,250 @@
-(function($, window, undefined)
+(function( $, window, undefined )
 {
-	var Layout = {};
+    window.Layout = {};
 
-	Layout.init = function()
-	{
-		Layout.switches();
-		Layout.dropDown();
-		Layout.rangeSlider();
-	}
+    window.Layout.elements = [
+        '.switch',
+        '.dropdown',
+        '.range-slider',
+        '.filepicker'
+    ]
 
-	Layout.switches = function()
-	{
-		var aSwitches = $('input[type=checkbox]');
+    window.Layout.init = function()
+    {
+        window.Layout.switches();
+        window.Layout.dropDown();
+        window.Layout.rangeSlider();
+        window.Layout.filePicker();
+    }
 
-		for(var i = 0; i < aSwitches.length; i++)
-		{
-			var $Element 	= $(aSwitches[i]);
-			var $Switch  	= $('<div class="switch input-component"><span class="label"></span><span class="ball"></span></div>');
-			var $Labal 		= $Switch.find('span.label');
-			var sState 		= $Element.prop('checked') ? "on" : "off";
-			var sStateLabel = $Element.prop('checked') ? "AN" : "AUS";
+    window.Layout.removeAll = function()
+    {
+        for( var i = 0; i < window.Layout.elements.length; i++ )
+        {
+            var sClass = window.Layout.elements[ i ];
 
-			$Switch.insertAfter($Element);
-			$Switch.addClass(sState);
-			$Labal.text(sStateLabel);
+            $(sClass).remove();
+        }
+    }
 
-			$Switch.on('click', function()
-			{
-				if($(this).hasClass('off'))
-				{
-					$(this).prev().prop('checked', true);
-					// $(this).find('span.ball').css({left: "50px"});
-					$Labal.text('AN');
-				}
-				else if($(this).hasClass('on'))
-				{
-					$(this).prev().prop('checked', false);
-					// $(this).find('span.ball').css({left: "0px"});
-					$Labal.text('AUS');
-				}
+    window.Layout.refresh = function()
+    {
+        window.Layout.removeAll();
+        window.Layout.init();
+    }
 
-				$(this).toggleClass('off');
-				$(this).toggleClass('on');
-			})
-		}
-	}
+    window.Layout.switches = function()
+    {
+        var aSwitches = $('input[type=checkbox]');
 
-	Layout.dropDown = function()
-	{
-		var aSelects = $('select');
+        for( var i = 0; i < aSwitches.length; i++ )
+        {
+            var $Element    = $(aSwitches[ i ]);
+            var $Switch     = $('<div class="switch input-component"><span class="label"></span><span class="ball"></span></div>');
+            var $Labal      = $Switch.find('span.label');
+            var sState      = $Element.prop('checked') ? "on" : "off";
+            var sStateLabel = $Element.prop('checked') ? "AN" : "AUS";
 
-		for(var i = 0; i < aSelects.length; i++)
-		{
-			var $Element 	= $(aSelects[i]);
-			var $Options 	= $Element.find("option");
+            $Switch.insertAfter($Element);
+            $Switch.addClass(sState);
+            $Labal.text(sStateLabel);
 
-			var $Select  	= $('<div class="dropdown collapsed"><span class="selected-item">' + $Element.find(":selected").text() + '</span><div class="dropdown-container"></div><span class="toggle"></span></div>');
-			var $Container 	= $Select.find("div");
+            $Switch.on('click', function()
+            {
+                if( $(this).hasClass('off') )
+                {
+                    $(this).prev().prop('checked', true);
+                    // $(this).find('span.ball').css({left: "50px"});
+                    $Labal.text('AN');
+                }
+                else if( $(this).hasClass('on') )
+                {
+                    $(this).prev().prop('checked', false);
+                    // $(this).find('span.ball').css({left: "0px"});
+                    $Labal.text('AUS');
+                }
 
-			for(var i = 0; i < $Options.length; i++)
-			{
-				var $Item = $('<a href="#">' + $Options.eq(i).text() + '</a>');
+                $(this).toggleClass('off');
+                $(this).toggleClass('on');
+            })
+        }
+    }
 
-				$Item.on('click', function()
-				{
-					$Select.find('.selected-item').text($(this).text());
-					$Element.val($(this).text());
-				})
+    window.Layout.dropDown = function()
+    {
+        var aSelects = $('select');
 
-				$Container.append($Item);
-			}
+        for( var i = 0; i < aSelects.length; i++ )
+        {
+            var $Element = $(aSelects[ i ]);
+            var $Options = $Element.find("option");
 
-			$Select.insertAfter($Element);
+            var $Select    = $('<div class="dropdown collapsed"><span class="selected-item">' + $Element.find(":selected").text() + '</span><div class="dropdown-container"></div><span class="toggle"></span></div>');
+            var $Container = $Select.find("div");
 
-			$Select.on('click', function()
-			{
-				if($(this).hasClass('expanded'))
-				{
-					$Container.hide();
-				}
-				else if($(this).hasClass('collapsed'))
-				{
-					$Container.show();
-				}
+            for( var i = 0; i < $Options.length; i++ )
+            {
+                var $Item = $('<a href="#">' + $Options.eq(i).text() + '</a>');
 
-				$(this).toggleClass('collapsed');
-				$(this).toggleClass('expanded');
-			})
-		}
-	}
-	
-	Layout.rangeSlider = function()
-	{
-		var aSlider = $('input[type=range]');
+                $Item.on('click', function()
+                {
+                    $Select.find('.selected-item').text($(this).text());
+                    $Element.val($(this).text());
+                })
 
-		for(var i = 0; i < aSlider.length; i++)
-		{
-			var $Element 		= $(aSlider[i]);
-			var nMin  			= parseInt($Element.attr('min'));
-			var nMax  			= parseInt($Element.attr('max'));
-			var nValue  		= parseInt($Element.val());
-			var nPointsCount 	= ( nMax - nMin ) + 1;
+                $Container.append($Item);
+            }
 
-			var $RangeSlider  	= $('<div class="range-slider input-component"><span class="output-area"></span><div class="sliding-area"><span class="slider"></span></div></div>');
-			var $SlidingArea 	= $RangeSlider.find('.sliding-area');
-			var $Slider 		= $RangeSlider.find('.slider');
-			var $OutputArea 	= $RangeSlider.find('.output-area');
+            $Select.insertAfter($Element);
 
-			$RangeSlider.insertAfter($Element);
+            $Select.on('click', function()
+            {
+                if( $(this).hasClass('expanded') )
+                {
+                    $Container.hide();
+                }
+                else if( $(this).hasClass('collapsed') )
+                {
+                    $Container.show();
+                }
 
-			var nSliderCenter 	= $Slider.width();
-			var nPercentStep 	= 100 / ( nPointsCount - 1 );
-			var nMarkerCenter 	= 5;
+                $(this).toggleClass('collapsed');
+                $(this).toggleClass('expanded');
+            })
+        }
+    }
 
-			$Slider.css({left : "calc(" + ( $Element.val() * nPercentStep ) + "% - " + nSliderCenter + "px)"});
+    window.Layout.rangeSlider = function()
+    {
+        var aSlider = $('input[type=range]');
 
-			$OutputArea.text(nValue + nMin);
+        for( var i = 0; i < aSlider.length; i++ )
+        {
+            var $Element     = $(aSlider[ i ]);
+            var nMin         = parseInt($Element.attr('min'));
+            var nMax         = parseInt($Element.attr('max'));
+            var nValue       = parseInt($Element.val());
+            var nPointsCount = ( nMax - nMin ) + 1;
 
-			for(var i = 0; i < nPointsCount; i++)
-			{
-				$Marker = $('<span class="marker"></span>');
-				$Marker.css({left : "calc(" + ( i * nPercentStep ) + "% - " + nMarkerCenter + "px)"});
+            var $RangeSlider = $('<div class="range-slider input-component"><span class="output-area"></span><div class="sliding-area"><span class="slider"></span></div></div>');
+            var $SlidingArea = $RangeSlider.find('.sliding-area');
+            var $Slider      = $RangeSlider.find('.slider');
+            var $OutputArea  = $RangeSlider.find('.output-area');
 
+            $RangeSlider.insertAfter($Element);
 
-				$SlidingArea.append($Marker);
-			}
+            var nSliderCenter = $Slider.width();
+            var nPercentStep  = 100 / ( nPointsCount - 1 );
+            var nMarkerCenter = 5;
 
-			$Slider.on('mousedown', function(event)
-			{
-				$(this).addClass('dragged');
-				$(this).css({transition : "none"});
+            $Slider.css({ left : "calc(" + ( $Element.val() * nPercentStep ) + "% - " + nSliderCenter + "px)" });
 
-				$(document).on('mouseup', function(event)
-				{
-					$Slider.css({transition : "all 0.3s linear"});
+            $OutputArea.text(nValue + nMin);
 
-					var aPositions = [];
+            for( var i = 0; i < nPointsCount; i++ )
+            {
+                $Marker = $('<span class="marker"></span>');
+                $Marker.css({ left : "calc(" + ( i * nPercentStep ) + "% - " + nMarkerCenter + "px)" });
 
-					for(var i = 0; i < nPointsCount; i++)
-					{
-						var nPosition 		= parseInt($Slider.css('left')) + nSliderCenter;
-						var nStepPosition 	= ( ( nPercentStep / 100 ) * i ) * $SlidingArea.width();
-						var nDistance 		= Math.abs(nPosition - nStepPosition);
+                $SlidingArea.append($Marker);
+            }
 
-						aPositions.push(nDistance);
-					}
+            $Slider.on('mousedown', function( event )
+            {
+                $(this).addClass('dragged');
+                $(this).css({ transition : "none" });
 
-					var nSmallestValue = $SlidingArea.width();
-					var nSmallestIndex = 0;
+                $(document).on('mouseup', function( event )
+                {
+                    $Slider.css({ transition : "all 0.3s linear" });
 
-					for(var i = 0; i < aPositions.length; i++)
-					{
-						if(aPositions[i] < nSmallestValue)
-						{
-							nSmallestValue = aPositions[i];
-							nSmallestIndex = i;
-						}
-					}
+                    var aPositions = [];
 
-					// var nLeft 	= ( ( ( nSmallestIndex * ( nPercentStep / 100 ) ) * $SlidingArea.width() ) - nSliderCenter );
-					var nLeft 	= "calc(" + ( nSmallestIndex * nPercentStep ) + "% - " + nSliderCenter + "px)";
-					var nValue 	= nSmallestIndex + nMin;
+                    for( var i = 0; i < nPointsCount; i++ )
+                    {
+                        var nPosition     = parseInt($Slider.css('left')) + nSliderCenter;
+                        var nStepPosition = ( ( nPercentStep / 100 ) * i ) * $SlidingArea.width();
+                        var nDistance     = Math.abs(nPosition - nStepPosition);
 
-					$Slider.css({left : nLeft});
+                        aPositions.push(nDistance);
+                    }
 
-					$Slider.removeClass('dragged');
+                    var nSmallestValue = $SlidingArea.width();
+                    var nSmallestIndex = 0;
 
-					$Element.val(nValue);
+                    for( var i = 0; i < aPositions.length; i++ )
+                    {
+                        if( aPositions[ i ] < nSmallestValue )
+                        {
+                            nSmallestValue = aPositions[ i ];
+                            nSmallestIndex = i;
+                        }
+                    }
 
-					$OutputArea.text(nValue);
+                    // var nLeft 	= ( ( ( nSmallestIndex * ( nPercentStep / 100 ) ) * $SlidingArea.width() ) - nSliderCenter );
+                    var nLeft  = "calc(" + ( nSmallestIndex * nPercentStep ) + "% - " + nSliderCenter + "px)";
+                    var nValue = nSmallestIndex + nMin;
 
-					$(document).off('mouseup');
-				})
-			})
+                    $Slider.css({ left : nLeft });
 
-			$SlidingArea.on('mousemove', function(event)
-			{
-				if($Slider.hasClass('dragged'))
-				{
-					var oRect = this.getBoundingClientRect();
-					var nLeft = ( event.pageX - oRect.left ) - nSliderCenter;
+                    $Slider.removeClass('dragged');
 
-					if(( nLeft + nSliderCenter ) < $(this).width() && nLeft + nSliderCenter > 0)
-					{
-						if(( nLeft + nSliderCenter ) > $(this).width())
-						{
-							nLeft = $(this).width() - nSliderCenter;
-						}
-						else if(( nLeft + nSliderCenter ) < 0)
-						{
-							nLeft = nSliderCenter;
-						}
+                    $Element.val(nValue);
 
-						$Slider.css({left : nLeft + "px"});
-					}
-				}
-			})
-		}
-	}
+                    $OutputArea.text(nValue);
 
-	Layout.init();
+                    $(document).off('mouseup');
+                })
+            })
+
+            $SlidingArea.on('mousemove', function( event )
+            {
+                if( $Slider.hasClass('dragged') )
+                {
+                    var oRect = this.getBoundingClientRect();
+                    var nLeft = ( event.pageX - oRect.left ) - nSliderCenter;
+
+                    if( ( nLeft + nSliderCenter ) < $(this).width() && nLeft + nSliderCenter > 0 )
+                    {
+                        if( ( nLeft + nSliderCenter ) > $(this).width() )
+                        {
+                            nLeft = $(this).width() - nSliderCenter;
+                        }
+                        else if( ( nLeft + nSliderCenter ) < 0 )
+                        {
+                            nLeft = nSliderCenter;
+                        }
+
+                        $Slider.css({ left : nLeft + "px" });
+                    }
+                }
+            })
+        }
+    }
+
+    window.Layout.filePicker = function()
+    {
+        var afilePicker = $('input[type="file"]');
+
+        for( var i = 0; i < afilePicker.length; i++ )
+        {
+            var $Element    = $(afilePicker[ i ]);
+            var $FilePicker = $('<div class="filepicker"><span class="path"></span><a href="#" class="pick">Auswählen</a></div>');
+
+            $FilePicker.insertAfter($Element);
+        }
+    
+        $('.filepicker').find('.pick').on('click', function()
+        {
+            $(this).parent().prev().click();
+        });
+
+        $('input[type="file"]').on('change', function()
+        {
+            $(this).next().find('.path').html($(this).val());
+        });
+    }
+
+    window.Layout.init();
 
 })(jQuery, window, undefined)

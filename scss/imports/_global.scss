@@ -55,3 +55,29 @@ hr.broad{
 	clear: both;
 	float: none;
 }
+
+.button{
+	width: auto;
+	height: 30px;
+	padding: 5px 8px;
+	display: block;
+	border-radius: 5px;
+	box-sizing: border-box;
+	background: $main-color;
+	color: $bright-font-color;
+	font-weight: bold;
+	transition: all 0.3s linear;
+
+	&.bright{
+		background: #FFF;
+		color: $main-color;
+
+		&:hover{
+			background: $bright-hover-background-color;
+		}
+	}
+
+	&:hover{
+		background: $main-color-dark;
+	}
+}

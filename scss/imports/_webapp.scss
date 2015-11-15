@@ -124,31 +124,11 @@
 		padding: 20px;
 		box-sizing: border-box;
 		background: #CCC;
-	}
 
-	.button{
-		width: auto;
-		height: 30px;
-		padding: 5px 8px;
-		display: block;
-		border-radius: 5px;
-		box-sizing: border-box;
-		background: $main-color;
-		color: $bright-font-color;
-		font-weight: bold;
-		transition: background 0.3s, color 0.3s;
-
-		&.bright{
-			background: #FFF;
-			color: $main-color;
-
-			&:hover{
-				background: $bright-hover-background-color;
-			}
-		}
-
-		&:hover{
-			background: $main-color-dark;
+		.filepicker{
+			width: calc(50% - 20px);
+			margin-left: 20px;
+			float : left;
 		}
 	}
 
@@ -238,6 +218,7 @@ form{
 		border-radius: 10px;
 		background: $bright-hover-background-color;
 		transition: all 0.3s linear;
+		float: left;
 
 		&:focus{
 			border: 1px solid $main-color;

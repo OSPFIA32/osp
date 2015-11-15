@@ -1,0 +1,45 @@
+.filepicker{
+    width         : 100%;
+    height        : 40px;
+    margin-top    : 20px;
+    display       : block;
+    background    : $bright-hover-background-color;
+    box-sizing    : border-box;
+    border-radius : 10px;
+    overflow      : hidden;
+
+    .pick{
+        min-width   : 80px;
+        height      : 100%;
+        padding     : 0 10px;
+        display     : block;
+        float       : right;
+        color       : $bright-font-color;
+        font-weight : bold;
+        background  : $main-color;
+        line-height : 40px;
+        text-align  : center;
+        transition  : all 0.3s linear;
+
+        &:hover{
+            color      : $brightest-font-color;
+            background : $main-color-dark;
+        }
+
+        &:focus{
+            color      : $brightest-font-color;
+            background : $main-color-dark;
+        }
+    }
+
+    .path{
+        width : calc(100% - 150px);
+        height: 100%;
+        padding-left: 10px;
+        display: block;
+        line-height: 40px;
+        float : left;
+        font-size: 18px;
+        color : $form-font-color;
+    }
+}

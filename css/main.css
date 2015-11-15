@@ -4,12 +4,12 @@
 }
 
 *::-moz-selection {
-  background: #e542a3;
+  background: #993578;
   color: #FFF;
 }
 
 *::selection {
-  background: #e542a3;
+  background: #993578;
   color: #FFF;
 }
 
@@ -71,6 +71,30 @@ hr.broad {
 .clearer {
   clear: both;
   float: none;
+}
+
+.button {
+  width: auto;
+  height: 30px;
+  padding: 5px 8px;
+  display: block;
+  border-radius: 5px;
+  box-sizing: border-box;
+  background: #822D6E;
+  color: #CCC;
+  font-weight: bold;
+  -webkit-transition: all 0.3s linear;
+          transition: all 0.3s linear;
+}
+.button.bright {
+  background: #FFF;
+  color: #822D6E;
+}
+.button.bright:hover {
+  background: #DDD;
+}
+.button:hover {
+  background: #682458;
 }
 
 a[data-tooltip] {
@@ -192,6 +216,49 @@ div.dropdown .selected-item {
   font-size: 15px;
   display: block;
   box-sizing: border-box;
+}
+
+.filepicker {
+  width: 100%;
+  height: 40px;
+  margin-top: 20px;
+  display: block;
+  background: #DDD;
+  box-sizing: border-box;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.filepicker .pick {
+  min-width: 80px;
+  height: 100%;
+  padding: 0 10px;
+  display: block;
+  float: right;
+  color: #CCC;
+  font-weight: bold;
+  background: #822D6E;
+  line-height: 40px;
+  text-align: center;
+  -webkit-transition: all 0.3s linear;
+          transition: all 0.3s linear;
+}
+.filepicker .pick:hover {
+  color: #FFF;
+  background: #682458;
+}
+.filepicker .pick:focus {
+  color: #FFF;
+  background: #682458;
+}
+.filepicker .path {
+  width: calc(100% - 150px);
+  height: 100%;
+  padding-left: 10px;
+  display: block;
+  line-height: 40px;
+  float: left;
+  font-size: 18px;
+  color: #2d2d2d;
 }
 
 .login-area {
@@ -336,28 +403,10 @@ div.dropdown .selected-item {
   box-sizing: border-box;
   background: #CCC;
 }
-.webapp .button {
-  width: auto;
-  height: 30px;
-  padding: 5px 8px;
-  display: block;
-  border-radius: 5px;
-  box-sizing: border-box;
-  background: #822D6E;
-  color: #CCC;
-  font-weight: bold;
-  -webkit-transition: background 0.3s, color 0.3s;
-          transition: background 0.3s, color 0.3s;
-}
-.webapp .button.bright {
-  background: #FFF;
-  color: #822D6E;
-}
-.webapp .button.bright:hover {
-  background: #DDD;
-}
-.webapp .button:hover {
-  background: #682458;
+.webapp .details-pane .filepicker {
+  width: calc(50% - 20px);
+  margin-left: 20px;
+  float: left;
 }
 .webapp .inner {
   width: 100%;
@@ -438,6 +487,7 @@ form input[type="text"], form input[type="password"] {
   background: #DDD;
   -webkit-transition: all 0.3s linear;
           transition: all 0.3s linear;
+  float: left;
 }
 form input[type="text"]:focus, form input[type="password"]:focus {
   border: 1px solid #822D6E;
