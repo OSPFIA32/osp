@@ -1,5 +1,5 @@
 <?php
-class ControllerDefault {
+class ControllerRESTUser {
 
   private $request = null;
   private $template = '';
@@ -12,7 +12,7 @@ class ControllerDefault {
   public function __construct($request) {
     $this->view = new View();
     $this->request = $request;
-    $this->template = '404';
+    $this->template = 'JSON';
   }
 
   /**
@@ -21,9 +21,17 @@ class ControllerDefault {
    * @return String Content der Applikation.
    */
   public function display() {
-    $innerView = new View();
+    $user = UserRepository::find($this->request['id']);
+
+    if($user !== null) {
+      $res = $user->toArray();
+      $res['status'] = 'success';
+    } else {
+      $res = array('status' => 'error');
+    }
     $this->view->setTemplate($this->template);
-    $this->view->assign('title', 'Error 404');
+    $this->view->assign('outlet', json_encode($res));
+
     return $this->view->loadTemplate();
   }
 }

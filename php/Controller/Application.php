@@ -14,8 +14,6 @@ class ControllerApplication {
     $this->view = new View();
     $this->request = $request;
     $this->template = 'default';
-    if($logged)
-      $this->user = ModelApplicationUserRepository::find($_SESSION['id']);
   }
 
   /**
