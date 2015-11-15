@@ -41,7 +41,7 @@ class View {
   public function loadTemplate() {
     $tpl = $this->template;
     // Pfad zum Template erstellen & überprüfen ob das Template existiert.
-    $file = $this->path . DIRECTORY_SEPARATOR . $tpl . '.php';
+    $file = $this->path . DIRECTORY_SEPARATOR . $tpl . '.html';
     $exists = file_exists($file);
 
     if ($exists) {
