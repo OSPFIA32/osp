@@ -89,7 +89,7 @@
 			})
 		}
 	}
-
+	
 	Layout.rangeSlider = function()
 	{
 		var aSlider = $('input[type=range]');

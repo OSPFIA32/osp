@@ -1,50 +1,75 @@
-(function($, window, undefined)
+(function( $, window, undefined )
 {
-	/** @namespace */
-	var GuiManager 		= {};
-		GuiManager.topbar 	= $('.top-bar');
-		GuiManager.sidebar 	= $('.side-bar');
-		GuiManager.content 	= $('.details-pane');
+    /** @namespace */
+    var GuiManager     = {};
+    GuiManager.topbar  = $( '.top-bar' );
+    GuiManager.sidebar = $( '.side-bar' );
+    GuiManager.content = $( '.details-pane' );
+    GuiManager.overlay = $( '.overlay' );
 
-		GuiManager.Templates = {};
-			GuiManager.Templates.event = $('.inner.new-event');
+    GuiManager.Templates       = {};
+    GuiManager.Templates.event = $( '.inner.new-event' );
 
-		/** 
-		 * @namespace
-		 * @member
-		 */
-		GuiManager.Inventory 	= {};
-		/** 
-		 * @namespace
-		 * @member
-		 */
-		GuiManager.Events 		= {};
-		/** 
-		 * @namespace
-		 * @member
-		 */
-		GuiManager.Equipment 	= {};
+    /**
+     * @namespace
+     * @member
+     */
+    GuiManager.Inventory = {};
+    /**
+     * @namespace
+     * @member
+     */
+    GuiManager.Events = {};
+    /**
+     * @namespace
+     * @member
+     */
+    GuiManager.Equipment = {};
 
-	GuiManager.init = function()
-	{
-		GuiManager.Events.setClickListeners();
-	}
+    GuiManager.init = function()
+    {
+        GuiManager.Events.setClickListeners();
+    }
 
-	GuiManager.clearContent = function()
-	{
-		GuiManager.content.html("");
-	}
+    GuiManager.clearContent = function()
+    {
+        GuiManager.content.html( "" );
+    }
 
-	GuiManager.Events.setClickListeners = function()
-	{
-		$('.top-bar .add').on('click', GuiManager.Events.add)
-	}
+    GuiManager.showDialog = function( sMessage, fFunction )
+    {
+        GuiManager.overlay.show();
 
-	GuiManager.Events.add = function()
-	{
-		GuiManager.content.html('<div class="inner new-event">' + GuiManager.Templates.event.html() + '</div>');
-	}
+        GuiManager.overlay.html( '<div class="dialog"><p>' + sMessage + '</p><a href="#" class="ok button">Ok</a><a href="#" class="cancel button">Abbrechen</a><div class="clearer"></div></div>' );
+    }
 
-	GuiManager.init();
+    GuiManager.Events.setClickListeners = function()
+    {
+        GuiManager.overlay.on( 'click', function()
+        {
+            $( this ).hide();
+        } )
 
-})(jQuery, window, undefined)
+        $( '.top-bar .add' ).on( 'click', GuiManager.Events.add )
+    }
+
+    GuiManager.Events.add = function()
+    {
+        console.log( "test" );
+
+        if( GuiManager.content.html() == false )
+        {
+            GuiManager.content.html( '<div class="inner new-event">' + GuiManager.Templates.event.html() + '</div>' );
+        }
+        else
+        {
+            GuiManager.showDialog( "Ungespeicherte Änderungen gehen verloren. Neue Vorlage öffnen?", function()
+            {
+                GuiManager.content.html( '<div class="inner new-event">' + GuiManager.Templates.event.html() + '</div>' );
+            } );
+        }
+    }
+
+    GuiManager.init();
+
+})( jQuery, window, undefined )
