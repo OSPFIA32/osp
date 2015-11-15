@@ -19,48 +19,17 @@
                 width       : 100%;
                 font-size   : 18px;
                 font-weight : bold;
-                color       : $main-font-color;
+                color       : $main-color;
             }
 
             hr{
                 margin       : 10px 0 10px 0;
-                border-color : $main-font-color;
+                border-color : $main-color;
             }
 
             input{
-                width         : 100%;
-                height        : 40px;
-                margin-top    : 0;
-                margin-bottom : 20px;
-                padding       : 10px;
-                border        : none;
-                box-sizing    : border-box;
-                border-radius : 10px;
-                color         : $form-font-color;
-                outline       : none;
-                background    : $bright-hover-background-color;
-
-                &:focus{
-                    background : $flat-color;
-                    border: 1px solid $main-color;
-                }
-
                 &[type='submit']{
-                    margin      : 0;
-                    background  : $main-color;
-                    color       : $bright-font-color;
-                    font-weight : bold;
-
-                    &:hover{
-                        border-color : $main-color-dark;
-                        background   : $main-color-dark;
-                        color : $flat-color;
-                    }
-
-                    &:focus{
-                        color : $flat-color;
-                        background   : $main-color-dark;
-                    }
+                    width :100%;
                 }
             }
         }

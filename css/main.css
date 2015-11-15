@@ -214,43 +214,14 @@ div.dropdown .selected-item {
   width: 100%;
   font-size: 18px;
   font-weight: bold;
-  color: #49193E;
+  color: #822D6E;
 }
 .login-area .login form#login hr {
   margin: 10px 0 10px 0;
-  border-color: #49193E;
-}
-.login-area .login form#login input {
-  width: 100%;
-  height: 40px;
-  margin-top: 0;
-  margin-bottom: 20px;
-  padding: 10px;
-  border: none;
-  box-sizing: border-box;
-  border-radius: 10px;
-  color: #2d2d2d;
-  outline: none;
-  background: #DDD;
-}
-.login-area .login form#login input:focus {
-  background: #FFF;
-  border: 1px solid #822D6E;
+  border-color: #822D6E;
 }
 .login-area .login form#login input[type='submit'] {
-  margin: 0;
-  background: #822D6E;
-  color: #CCC;
-  font-weight: bold;
-}
-.login-area .login form#login input[type='submit']:hover {
-  border-color: #682458;
-  background: #682458;
-  color: #FFF;
-}
-.login-area .login form#login input[type='submit']:focus {
-  color: #FFF;
-  background: #682458;
+  width: 100%;
 }
 
 .webapp {
