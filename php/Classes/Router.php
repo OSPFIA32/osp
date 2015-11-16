@@ -9,10 +9,9 @@ class Router {
   public static function getController($request) {
 
     // Default Route, if no route specified
-
     if(!isset($request['route'])) {
 
-      return new Controller($request);
+      return new ControllerLogin($request);
     }
     else {
       // Emulated routes
