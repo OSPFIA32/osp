@@ -149,7 +149,7 @@
 
             for( var i = 0; i < nPointsCount; i++ )
             {
-                $Marker = $('<span class="marker"></span>');
+                var $Marker = $('<span class="marker"></span>');
                 $Marker.css({ left : "calc(" + ( i * nPercentStep ) + "% - " + nMarkerCenter + "px)" });
 
                 $SlidingArea.append($Marker);
@@ -239,7 +239,7 @@
 
             $FilePicker.insertAfter($Element);
         }
-    
+
         $('.filepicker').find('.pick').on('click', function()
         {
             $(this).parent().prev().click();
