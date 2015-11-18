@@ -7,7 +7,7 @@
         '.dropdown',
         '.range-slider',
         '.filepicker'
-    ]
+    ];
 
     window.Layout.init = function()
     {
@@ -21,7 +21,7 @@
             lang           : 'de',
             startDate      : '2015/11/15'
         });
-    }
+    };
 
     window.Layout.removeAll = function()
     {
@@ -31,13 +31,13 @@
 
             $(sClass).remove();
         }
-    }
+    };
 
     window.Layout.refresh = function()
     {
         window.Layout.removeAll();
         window.Layout.init();
-    }
+    };
 
     window.Layout.switches = function()
     {
@@ -46,7 +46,7 @@
         for( var i = 0; i < aSwitches.length; i++ )
         {
             var $Element    = $(aSwitches[ i ]);
-            var $Switch     = $('<div class="switch input-component"><span class="label"></span><span class="ball"></span></div>');
+            var $Switch     = $('<div id="test">\n    <ul>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n    </ul>\n</div>');
             var $Labal      = $Switch.find('span.label');
             var sState      = $Element.prop('checked') ? "on" : "off";
             var sStateLabel = $Element.prop('checked') ? "AN" : "AUS";
@@ -74,7 +74,7 @@
                 $(this).toggleClass('on');
             })
         }
-    }
+    };
 
     window.Layout.dropDown = function()
     {
@@ -96,7 +96,7 @@
                 {
                     $Select.find('.selected-item').text($(this).text());
                     $Element.val($(this).text());
-                })
+                });
 
                 $Container.append($Item);
             }
@@ -118,7 +118,7 @@
                 $(this).toggleClass('expanded');
             })
         }
-    }
+    };
 
     window.Layout.rangeSlider = function()
     {
@@ -132,7 +132,7 @@
             var nValue       = parseInt($Element.val());
             var nPointsCount = ( nMax - nMin ) + 1;
 
-            var $RangeSlider = $('<div class="range-slider input-component"><span class="output-area"></span><div class="sliding-area"><span class="slider"></span></div></div>');
+            var $RangeSlider = $('<div>\n    <ul>\n        \n    </ul>\n</div>');
             var $SlidingArea = $RangeSlider.find('.sliding-area');
             var $Slider      = $RangeSlider.find('.slider');
             var $OutputArea  = $RangeSlider.find('.output-area');
@@ -201,7 +201,7 @@
 
                     $(document).off('mouseup');
                 })
-            })
+            });
 
             $SlidingArea.on('mousemove', function( event )
             {
@@ -226,7 +226,7 @@
                 }
             })
         }
-    }
+    };
 
     window.Layout.filePicker = function()
     {
@@ -249,8 +249,8 @@
         {
             $(this).next().find('.path').html($(this).val());
         });
-    }
+    };
 
     window.Layout.init();
 
-})(jQuery, window, undefined)
+})(jQuery, window, undefined);

@@ -2,7 +2,7 @@
 <html lang="de">
     <head>
         <meta charset="utf-8">
-        <title>Lerhmittelverwaltung</title>
+        <title>Lehrmittelverwaltung</title>
         <meta name="description" content="Lerhmittelverwaltung">
         <link rel="stylesheet" href="../css/normalize.css">
         <link rel="stylesheet" href="../css/jquery.datetimepicker.css">
@@ -10,7 +10,7 @@
         <script src="../js/jquery.js"></script>
     </head>
     <body>
-        <div class="overlay"></div>
+        <div class="overlay" stlye="color: #"></div>
         <div class="webapp">
             <div class="top-bar">
                 <div class="top-dropdown-container transition-300 double-width">
@@ -73,20 +73,11 @@
         </div>
 
         <script src="../js/plugins/jquery.datetimepicker.full.js"></script>
+        <script src="../js/Event.js"></script>
         <script src="../js/layout.js"></script>
         <script src="../js/GuiManager.js"></script>
 
         <script>
-            $('.datetimepicker').datetimepicker({
-                dayOfWeekStart : 1,
-                lang           : 'de',
-                startDate      : '2015/11/15'
-            });
-
-            $('.datetimepicker').datetimepicker({
-                value : '2015/04/15 05:03',
-                step  : 10
-            });
         </script>
     </body>
 </html>
