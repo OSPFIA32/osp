@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="de">
+    <head>
+        <meta charset="utf-8">
+        <title>Lerhmittelverwaltung</title>
+        <meta name="description" content="Lerhmittelverwaltung">
+        <link rel="stylesheet" href="../css/normalize.css">
+        <link rel="stylesheet" href="../css/jquery.datetimepicker.css">
+        <link rel="stylesheet" href="../css/main.css">
+        <script src="../js/jquery.js"></script>
+    </head>
+    <body>
+        <div class="overlay"></div>
+        <div class="webapp">
+            <div class="top-bar">
+                <div class="top-dropdown-container transition-300 double-width">
+                    <select hidden="hidden">
+                        <option>Eigene Veranstalt.</option>
+                        <option>Veranstalt. Suchen</option>
+                    </select>
+                </div>
+                <a href="#" class="add button bright left top-bar-item" data-tooltip="Veranstaltung hinzufügen">+</a>
+                <a href="#" class="button bright logout right top-bar-item">Ausloggen</a>
+                <!--span class="username">aerotschkin</span-->
+            </div>
+
+            <div class="side-bar left">
+                <hr class="broad" />
+                <div class="overview-item transition-300">
+                    <span class="title">Oberstufenprojekt</span>
+                    <span class="date">09.11.2015</span>
+                    <hr />
+                </div>
+                <div class="overview-item transition-300">
+                    <span class="title">Oberstufenprojekt</span>
+                    <span class="date">09.11.2015</span>
+                    <hr />
+                </div>
+                <div class="overview-item transition-300">
+                    <span class="title">Oberstufenprojekt</span>
+                    <span class="date">09.11.2015</span>
+                    <hr />
+                </div>
+                <div class="overview-item transition-300">
+                    <span class="title">Oberstufenprojekt</span>
+                    <span class="date">09.11.2015</span>
+                    <hr />
+                </div>
+            </div>
+
+            <div class="details-pane left">
+
+            </div>
+        </div>
+
+        <div class="templates">
+
+            <div class="inner new-event">
+                <h1>Neue Veranstaltung</h1>
+
+                <form>
+                    <input type="text" name="name" placeholder="Name der Veranstaltung" class="width-50" />
+                    <input type="file" name="image" accept="image/*" hidden="hidden" />
+                    <textarea name="description" placeholder="Beschreibung der Veranstaltung"></textarea>
+                    <!--<input type="datetime" name="startDate" />-->
+                    <!--<input type="datetime" name="endDate" />-->
+                    <input type="text" name="startDate" class="datetimepicker">
+                    <br>
+                    <input type="submit" value="Speichern" />
+                </form>
+            </div>
+
+        </div>
+
+        <script src="../js/plugins/jquery.datetimepicker.full.js"></script>
+        <script src="../js/layout.js"></script>
+        <script src="../js/GuiManager.js"></script>
+
+        <script>
+            $('.datetimepicker').datetimepicker({
+                dayOfWeekStart : 1,
+                lang           : 'de',
+                startDate      : '2015/11/15'
+            });
+
+            $('.datetimepicker').datetimepicker({
+                value : '2015/04/15 05:03',
+                step  : 10
+            });
+        </script>
+    </body>
+</html>
