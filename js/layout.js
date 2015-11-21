@@ -235,7 +235,7 @@
         for( var i = 0; i < afilePicker.length; i++ )
         {
             var $Element    = $(afilePicker[ i ]);
-            var $FilePicker = $('<div class="filepicker"><span class="path"></span><a href="#" class="pick">Auswählen</a></div>');
+            var $FilePicker = $('<div class="filepicker"><span class="path"></span><a href="#" class="pick">Datei Auswählen</a></div>');
 
             $FilePicker.insertAfter($Element);
         }
