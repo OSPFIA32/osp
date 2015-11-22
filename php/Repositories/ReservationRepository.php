@@ -12,7 +12,7 @@ class ReservationRepository {
    */
   public static function findAll(){
 
-    $connection = PDOConnection::getInstance();
+    $connection = Connection::getInstance();
     if(!$connection)
       return null;
     else {
@@ -33,7 +33,7 @@ class ReservationRepository {
    */
   public static function find($id) {
 
-    $connection = PDOConnection::getInstance();
+    $connection = Connection::getInstance();
     if(!$connection)
       return null;
 
@@ -58,7 +58,7 @@ class ReservationRepository {
   */
   public static function create($data) {
 
-    $connection = PDOConnection::getInstance();
+    $connection = Connection::getInstance();
     if(!$connection)
       return null;
 
@@ -79,7 +79,7 @@ class ReservationRepository {
 
   public function update($data) {
 
-    $connection = PDOConnection::getInstance();
+    $connection = Connection::getInstance();
     if(!$connection)
       return null;
 

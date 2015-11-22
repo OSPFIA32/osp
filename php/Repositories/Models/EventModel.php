@@ -9,10 +9,16 @@ class EventModel {
   public $id;
 
   /**
+  * @property $userID
+  * stores the creators userid
+  */
+  public $userID;
+
+  /**
   * @property $eventName
   * stores the users full name
   */
-  public $eventName;
+  public $name;
 
   /**
   * @property $startDate
@@ -26,20 +32,29 @@ class EventModel {
   */
   public $endDate;
 
-  public function __construct($id) {
-    $this->id = (int)$id;
-    $this->eventName = 'Deutschunterricht';
-    $this->startDate = '26.10.2015 07:45:00';
-    $this->endDate = '26.10.2015 09:15:00';
-  }
+  /**
+  * @property $description
+  * stores a description of the event which will be shown in the event page
+  */
+  public $description;
+
+
+  public function __construct() {}
 
   public function toArray() {
     $array = array();
     foreach($this as $key => $value) {
-      $array[$key] = $value;
+      $array[$key] = preg_match('/\d+/', $value) ? (int)$value : $value;
     }
     return $array;
   }
+
+  public function __set($prop, $val) {
+    unset($prop);
+    unset($val);
+  }
+
+
 }
 
 ?>

@@ -7,11 +7,12 @@ class EventRepository {
 
   /**
    * Gibt alle Einträge des Blogs zurück.
-   *
+   * testing
    * @return EventModel[]   $event
    */
   public static function findAll() {
-    $connection = PDOConnection::getInstance();
+
+    $connection = Connection::getInstance();
     if(!$connection)
       return null;
 
@@ -20,18 +21,17 @@ class EventRepository {
       FROM    events
     ');
 
-    $stmt->bindParam(':id', $id);
     $stmt->execute();
     $stmt->setFetchMode(PDO::FETCH_CLASS, 'EventModel');
 
-    if($event = $stmt->fetch())
+    if($event = $stmt->fetchAll())
       return $event;
     return null;
   }
 
   /**
    * Gibt einen bestimmten Eintrag zurück.
-   *
+   * done
    * @param   int         $id     Id des gesuchten Eintrags
    * @return  EventModel  $event  User mit id = $id
    */

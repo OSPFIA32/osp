@@ -12,7 +12,7 @@ class UserRepository {
    */
   public static function findAll(){
 
-    $connection = PDOConnection::getInstance();
+    $connection = Connection::getInstance();
     if(!$connection)
       return null;
     $stmt = $connection->prepare('
@@ -34,7 +34,7 @@ class UserRepository {
    */
   public static function find($id) {
 
-    $connection = PDOConnection::getInstance();
+    $connection = Connection::getInstance();
     if(!$connection)
       return null;
 
@@ -59,7 +59,7 @@ class UserRepository {
   */
   public static function create($data) {
 
-    $connection = PDOConnection::getInstance();
+    $connection = Connection::getInstance();
     if(!$connection)
       return null;
 
@@ -83,7 +83,7 @@ class UserRepository {
 
   public function update($data) {
 
-    $connection = PDOConnection::getInstance();
+    $connection = Connection::getInstance();
     if(!$connection)
       return null;
 
