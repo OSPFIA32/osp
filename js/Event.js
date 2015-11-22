@@ -17,7 +17,6 @@ var Event = function( settings )
     this.description  = settings.description;
     this.userId       = settings.userId;
     this.document     = settings.document;
-    this.categories   = settings.categories;
     this.reservations = settings.reservations;
 
     this.Date = {
