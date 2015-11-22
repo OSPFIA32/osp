@@ -301,18 +301,26 @@
 
             if( $(this).closest('.inner').hasClass('changed') )
             {
+                var sName        = $(this).find('[name="name"]').val();
+                var sDescription = $(this).find('[name="description"]').val();
+                var sStartDate   = $(this).find('[name="startDate"]').val();
+                var sEndDate     = $(this).find('[name="endDate"]').val();
+
+                var oData = {
+                    name        : sName,
+                    description : sDescription,
+                    startDate   : sStartDate,
+                    endDate     : sEndDate
+                };
+                
                 $.ajax({
-                    url     : "artur.qwede.de/api/events/",
+                    url     : "http://artur.qwede.de/api/events/",
                     type    : "POST",
-                    data    : {
-                        name        : $(this).find('[name="name"]'),
-                        description : $(this).find('[name="description"]'),
-                        startDate   : $(this).find('[name="startDate"]'),
-                        endDate     : $(this).find('[name="endDate"]')
-                    },
+                    data    : oData,
                     success : function( result, status, xhr )
                     {
-                        console.info("success");
+                        console.log(result);
+                        console.info(status);
                     },
                     error   : function( xhr, status, error )
                     {
