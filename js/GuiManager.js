@@ -101,7 +101,7 @@
     GuiManager.Database.searchEvents = function( filterParams )
     {
         $.ajax({
-            url     : "http://artur.qwede.de/api/events/1",
+            url     : "/api/events/",
             type    : "GET",
             data    : {
                 token    : "vsdsdvs",
@@ -312,9 +312,9 @@
                     startDate   : sStartDate,
                     endDate     : sEndDate
                 };
-                
+
                 $.ajax({
-                    url     : "http://artur.qwede.de/api/events/",
+                    url     : "/api/events/",
                     type    : "POST",
                     data    : oData,
                     success : function( result, status, xhr )
