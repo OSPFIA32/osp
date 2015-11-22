@@ -292,6 +292,25 @@
         GuiManager.reservationOverlay.show();
     };
 
+    GuiManager.Events.formatDate = function( sDate )
+    {
+        var aDateTime = sDate.split(' ');
+        var aDate = aDateTime[ 0 ].split('.');
+        var sNewDateTime;
+
+        if( aDateTime[1] !== undefined)
+        {
+            var aTime = aDateTime[ 1 ].split(':');
+            sNewDateTime = aDate[ 2 ] + "." + aDate[ 1 ] + "." + aDate[ 0 ] + " " + aTime[ 0 ] + ":" + aTime[ 1 ] + ":00";
+        }
+        else
+        {
+            sNewDateTime = aDate[ 2 ] + "." + aDate[ 1 ] + "." + aDate[ 0 ] + " 00:00:00";
+        }
+
+        return sNewDateTime;
+    };
+
     GuiManager.Events.onSubmit = function()
     {
         $("form.event-form").off();
@@ -303,8 +322,8 @@
             {
                 var sName        = $(this).find('[name="name"]').val();
                 var sDescription = $(this).find('[name="description"]').val();
-                var sStartDate   = $(this).find('[name="startDate"]').val();
-                var sEndDate     = $(this).find('[name="endDate"]').val();
+                var sStartDate   = GuiManager.Events.formatDate($(this).find('[name="startDate"]').val());
+                var sEndDate     = GuiManager.Events.formatDate($(this).find('[name="endDate"]').val());
 
                 var oData = {
                     name        : sName,
@@ -320,11 +339,10 @@
                     success : function( result, status, xhr )
                     {
                         console.log(result);
-                        console.info(status);
                     },
                     error   : function( xhr, status, error )
                     {
-                        console.error("error");
+                        console.log(error);
                     }
                 });
             }

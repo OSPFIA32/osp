@@ -290,6 +290,10 @@ div.dropdown {
       font-size: 30px;
       padding: 0;
       line-height: 50px; }
+    .webapp .top-bar .remove {
+      font-size: 30px;
+      padding: 0;
+      line-height: 50px; }
     .webapp .top-bar .logout {
       padding: 0 10px 0 10px;
       line-height: 50px;
