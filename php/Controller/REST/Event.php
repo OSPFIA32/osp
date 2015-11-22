@@ -32,6 +32,7 @@ class ControllerRESTEvent {
         //$events = EventRepository::query($request['query']);
       }
     } elseif ($this->request['type'] === 'POST') {
+      print_r($request);
       $data = json_decode($this->request['data']['data']);
       $res = EventRepository::create($data);
     }

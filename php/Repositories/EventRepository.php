@@ -68,7 +68,7 @@ class EventRepository {
 
     $stmt = $connection->prepare('
       INSERT INTO `events`  (`name`, `description`, `userid` ,`startDate`, `endDate`)
-      VALUES                (:name , :description ,  69, :startDate , :endDate )
+      VALUES                (:name , :description ,  69,      :startDate , :endDate )
     ');
 
     $stmt->bindParam(':name', $data['name']);
@@ -77,9 +77,11 @@ class EventRepository {
     $stmt->bindParam(':endDate', $data['endDate']);
 
     if($stmt->execute() === true) {
+      echo ("success");
       return 200;
     }
     else {
+      echo ("error: " . $stmt->errorCode());
       return $stmt->errorCode();
     }
   }

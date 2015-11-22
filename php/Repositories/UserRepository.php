@@ -71,9 +71,12 @@ class UserRepository {
     $stmt->bindParam(':id', $data['id']);
     $stmt->bindParam(':name', $data['name']);
 
-    if($stmt->execute() === true)
+    if($stmt->execute() === true) {
+      echo "success";
       return 200;
+    }
     else {
+      echo "error: " . $stmt->errorCode();
       return $stmt->errorCode();
     }
   }
