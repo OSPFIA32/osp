@@ -1,5 +1,5 @@
 <?php
-class ControllerRESTEvent {
+class ControllerRESTReservation {
 
   private $request = null;
   private $template = '';
@@ -18,39 +18,27 @@ class ControllerRESTEvent {
   /**
    * Methode zum anzeigen des Contents.
    *
-   * @return string string to display
+   * @return String Content der Applikation.
    */
   public function display() {
+    $event = EventRepository::find($this->request['id']);
 
-    if($this->request['type'] === 'GET') {
-      if (empty($request['query'])) {
-        //$events = EventRepository::findAll();
-      } elseif (!empty($request['query']['id'])) {
-        //$events = EventRepository::find($request['query']['id']);
-      } else {
-        //$events = EventRepository::query($request['query']);
-      }
-    } elseif ($this->request['type'] === 'POST') {
-      $data = json_decode($request['data']);
-      print_r($data);
-      $res = EventRepository::create($data);
-    }
-    /*
     if($event !== null) {
 
       $events = array();
       for($i = 0; $i < 3; $i++) {
         array_push($events, $event->toArray());
       }
+      //$res = $events;
+
 
       $res['events'] = array_values($events);
       $res['status'] = 'success';
     } else {
       $res = array('status' => 'error');
     }
-    */
     $this->view->setTemplate($this->template);
-    $this->view->assign('outlet', '\n');
+    $this->view->assign('outlet', json_encode($res));
 
     return $this->view->loadTemplate();
   }

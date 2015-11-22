@@ -2,11 +2,11 @@
 /**
  * Repository - Füllt das Model application-user
  */
-require_once 'Models/UserModel.php';
-class UserRepository {
+require_once 'Models/ReservationModel.php';
+class ReservationRepository {
 
   /**
-   * Gibt alle Einträge zurück.
+   * Gibt alle Einträge des Blogs zurück.
    *
    * @return Array Array von Usern
    */
@@ -15,14 +15,13 @@ class UserRepository {
     $connection = PDOConnection::getInstance();
     if(!$connection)
       return null;
-    $stmt = $connection->prepare('
-      SELECT  *
-      FROM    users
-    ');
-
-    $stmt->execute();
-    $stmt->setFetchMode(PDO::FETCH_CLASS, 'UserModel');
-
+    else {
+      $stmt = $connection->prepare('
+        SELECT  *
+        FROM    users
+      ');
+      $stmt->execute();
+    }
     return null;
   }
 

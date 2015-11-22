@@ -5,7 +5,6 @@ ini_set("display_errors", 1);
 
 // Credentials
 
-
 // Connection
 require_once 'php/Classes/Connection.php';
 
@@ -18,6 +17,7 @@ require_once 'php/Controller/Events.php';
 require_once 'php/Controller/Default.php';
 
 // REST API
+
 require_once 'php/Controller/REST/User.php';
 require_once 'php/Controller/REST/Event.php';
 
@@ -31,11 +31,21 @@ require_once 'php/Repositories/EventRepository.php';
 require_once 'php/Classes/View.php';
 
 // Merge $_GET and $_POST
-$request = array_merge($_GET, $_POST);
+$request = $_GET;
+$request['type'] = $_SERVER['REQUEST_METHOD'];
+
+if($_SERVER['REQUEST_METHOD'] == 'PUT' || $_SERVER['REQUEST_METHOD'] == 'DELETE') {
+  parse_str(file_get_contents("php://input"), $post_vars);
+} else {
+  $post_vars = $_POST;
+}
+
+$request['data'] = $post_vars;
+
+$request['path'] = explode("/", substr(@$_SERVER['PATH_INFO'], 1));
+
 // Create Controller and print content
 echo Router::getController($request)->display();
-
-
 
 
 ?>
