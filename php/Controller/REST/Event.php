@@ -22,6 +22,7 @@ class ControllerRESTEvent {
    */
   public function display() {
 
+
     if($this->request['type'] === 'GET') {
       if (empty($request['query'])) {
         //$events = EventRepository::findAll();
@@ -31,8 +32,7 @@ class ControllerRESTEvent {
         //$events = EventRepository::query($request['query']);
       }
     } elseif ($this->request['type'] === 'POST') {
-      $data = json_decode($request['data']);
-      print_r($data);
+      $data = json_decode($this->request['data']['data']);
       $res = EventRepository::create($data);
     }
     /*

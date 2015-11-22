@@ -37,7 +37,7 @@ class EventRepository {
    */
   public static function find($id) {
 
-    $connection = PDOConnection::getInstance();
+    $connection = Connection::getInstance();
     if(!$connection)
       return null;
 
@@ -61,23 +61,24 @@ class EventRepository {
   */
   public static function create($data) {
 
-    $connection = PDOConnection::getInstance();
+    $connection = Connection::getInstance();
+
     if(!$connection)
       return null;
 
     $stmt = $connection->prepare('
-      INSERT INTO `events`  (`name`, `description`, `userId`, `startDate`, `endDate`)
-      VALUES                (:name , :description , :userId , :startDate , :endDate )
+      INSERT INTO `events`  (`name`, `description`, `userid` ,`startDate`, `endDate`)
+      VALUES                (:name , :description ,  69, :startDate , :endDate )
     ');
 
     $stmt->bindParam(':name', $data['name']);
     $stmt->bindParam(':description', $data['description']);
-    //$stmt->bindParam(':image', $data['image']);
     $stmt->bindParam(':startDate', $data['startDate']);
     $stmt->bindParam(':endDate', $data['endDate']);
 
-    if($stmt->execute() === true)
+    if($stmt->execute() === true) {
       return 200;
+    }
     else {
       return $stmt->errorCode();
     }
