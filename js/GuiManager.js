@@ -1,106 +1,12 @@
 (function( $, window, undefined )
 {
-    var A_DUMMY_JSON_EVENTS = {
-        events : [
-            {
-                id          : 12,
-                name        : "Projektwoche",
-                description : "Nächste Woche findet bei uns die Projektwoche statt",
-                image       : "../img/test.jpg",
-                userId      : 82404,
-                startDate   : "20.06.2016",
-                endDate     : "27.06.2016"
-            },
-            {
-                id          : 13,
-                name        : "Weihnachtsfeier",
-                description : "Nächste Woche findet bei uns die Weihnachtsfeier statt",
-                image       : "../img/test.jpg",
-                userId      : 82404,
-                startDate   : "23.12.2015",
-                endDate     : "24.12.2015"
-            },
-            {
-                id          : 12,
-                name        : "Projektwoche",
-                description : "Nächste Woche findet bei uns die Projektwoche statt",
-                image       : "../img/test.jpg",
-                userId      : 82404,
-                startDate   : "20.06.2016",
-                endDate     : "27.06.2016"
-            },
-            {
-                id          : 13,
-                name        : "Weihnachtsfeier",
-                description : "Nächste Woche findet bei uns die Weihnachtsfeier statt",
-                image       : "../img/test.jpg",
-                userId      : 82404,
-                startDate   : "23.12.2015",
-                endDate     : "24.12.2015"
-            },
-            {
-                id          : 15,
-                name        : "Karneval",
-                description : "Nächste Woche findet bei uns Karneval statt",
-                image       : "../img/test.jpg",
-                userId      : 82404,
-                startDate   : "16.02.2016",
-                endDate     : "20.02.2016"
-            },
-            {
-                id          : 12,
-                name        : "Projektwoche",
-                description : "Nächste Woche findet bei uns die Projektwoche statt",
-                image       : "../img/test.jpg",
-                userId      : 82404,
-                startDate   : "20.06.2016",
-                endDate     : "27.06.2016"
-            },
-            {
-                id          : 13,
-                name        : "Weihnachtsfeier",
-                description : "Nächste Woche findet bei uns die Weihnachtsfeier statt",
-                image       : "../img/test.jpg",
-                userId      : 82404,
-                startDate   : "23.12.2015",
-                endDate     : "24.12.2015"
-            },
-            {
-                id          : 15,
-                name        : "Karneval",
-                description : "Nächste Woche findet bei uns Karneval statt",
-                image       : "../img/test.jpg",
-                userId      : 82404,
-                startDate   : "16.02.2016",
-                endDate     : "20.02.2016"
-            },
-            {
-                id          : 12,
-                name        : "Projektwoche",
-                description : "Nächste Woche findet bei uns die Projektwoche statt",
-                image       : "../img/test.jpg",
-                userId      : 82404,
-                startDate   : "20.06.2016",
-                endDate     : "27.06.2016"
-            },
-            {
-                id          : 16,
-                name        : "Sommerferien",
-                description : "Nächste Woche sind die Sommerferien",
-                image       : "../img/test.jpg",
-                userId      : 82404,
-                startDate   : "30.06.2016",
-                endDate     : "15.08.2016"
-            }
-        ]
-    };
-
     /** @namespace */
-    var GuiManager     = {};
-    GuiManager.topbar  = $('.top-bar');
-    GuiManager.sidebar = $('.side-bar');
-    GuiManager.content = $('.details-pane');
-    GuiManager.overlay = $('.overlay');
+    var GuiManager                = {};
+    GuiManager.topbar             = $('.top-bar');
+    GuiManager.sidebar            = $('.side-bar');
+    GuiManager.content            = $('.details-pane');
+    GuiManager.overlay            = $('.overlay');
+    GuiManager.reservationOverlay = $('.reservation-overlay');
 
     GuiManager.Templates       = {};
     GuiManager.Templates.event = $('.inner.new-event');
@@ -267,11 +173,11 @@
 
     GuiManager.Events.add = function( oEvent )
     {
-        if( GuiManager.content.children().length > 0 && $('.inner').hasClass('changed'))
+        if( GuiManager.content.children().length > 0 && $('.inner').hasClass('changed') )
         {
             GuiManager.showDialog("Ungespeicherte Änderungen gehen verloren. Neue Vorlage öffnen?", function()
             {
-                GuiManager.content.html(Templates.eventContent);
+                GuiManager.Events.addAdditional();
 
                 if( oEvent !== undefined )
                     GuiManager.Events.fill(oEvent);
@@ -283,13 +189,36 @@
         }
         else
         {
-            GuiManager.content.html(Templates.eventContent);
+            GuiManager.Events.addAdditional();
 
             if( oEvent !== undefined )
                 GuiManager.Events.fill(oEvent);
 
             window.Layout.refresh();
         }
+    };
+
+    GuiManager.Events.addAdditional = function()
+    {
+        GuiManager.content.html(Templates.eventContent);
+        GuiManager.Events.createCategory();
+        GuiManager.Events.setReservationClickListeners();
+        GuiManager.Events.onSubmit();
+    };
+
+    GuiManager.Events.createCategory = function()
+    {
+        var aCategories = A_DUMMY_JSON_EVENTS.categories;
+        var aSelects    = $('select[name="category"]');
+
+        aSelects.each(function()
+        {
+            for( var i = 0; i < aCategories.length; i++ )
+            {
+                var sCategory = aCategories[ i ];
+                $(this).append('<option>' + sCategory + '</option>')
+            }
+        });
     };
 
     GuiManager.Events.fill = function( oEvent )
@@ -313,11 +242,84 @@
 
     GuiManager.Events.addChangedListener = function()
     {
-        var aInputElements = $('.inner input, textarea');
+        var aInputElements = $('.inner input, textarea, select');
 
         aInputElements.on("change", function()
         {
             $(this).closest('.inner').addClass('changed');
+        });
+    };
+
+    GuiManager.Events.setReservationClickListeners = function()
+    {
+        var $Container    = $('.reservations')
+        var $Add          = $Container.find('.add');
+        var $Edit         = $Container.find('.edit');
+        var $Remove       = $Container.find('.remove');
+        var aReservations = $Container.find('.reservation-item');
+
+        $Add.on('click', function()
+        {
+            GuiManager.Events.addReservation();
+        });
+
+        $Edit.on('click', function()
+        {
+            // RESERVIERUNG BEARBEITEN
+        });
+
+        $Remove.on('click', function()
+        {
+            // RESERVIERUNG LÖSCHEN
+        });
+
+        aReservations.each(function()
+        {
+            $(this).on('click', function()
+            {
+                aReservations.each(function()
+                {
+                    $(this).removeClass('selected');
+                });
+
+                $(this).addClass('selected');
+            });
+        });
+    };
+
+    GuiManager.Events.addReservation = function()
+    {
+        GuiManager.reservationOverlay.show();
+    };
+
+    GuiManager.Events.onSubmit = function()
+    {
+        $("form.event-form").off();
+        $("form.event-form").on('submit', function( event )
+        {
+            event.preventDefault();
+
+            if( $(this).closest('.inner').hasClass('changed') )
+            {
+                $.ajax({
+                    url     : "artur.qwede.de/api/events/",
+                    type    : "POST",
+                    data    : {
+                        name        : $(this).find('[name="name"]'),
+                        description : $(this).find('[name="description"]'),
+                        startDate   : $(this).find('[name="startDate"]'),
+                        endDate     : $(this).find('[name="endDate"]')
+                    },
+                    success : function( result, status, xhr )
+                    {
+                        console.info("success");
+                    },
+                    error   : function( xhr, status, error )
+                    {
+                        console.error("error");
+                    }
+                });
+            }
         });
     };
 

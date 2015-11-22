@@ -79,7 +79,7 @@
     window.Layout.dropDown = function()
     {
         var aSelects = $('select');
-
+        
         for( var i = 0; i < aSelects.length; i++ )
         {
             var $Element = $(aSelects[ i ]);
@@ -88,17 +88,20 @@
             var $Select    = $('<div class="dropdown collapsed"><span class="selected-item">' + $Element.find(":selected").text() + '</span><div class="dropdown-container"></div><span class="toggle"></span></div>');
             var $Container = $Select.find("div");
 
-            for( var i = 0; i < $Options.length; i++ )
+            for( var j = 0; j < $Options.length; j++ )
             {
-                var $Item = $('<a href="#">' + $Options.eq(i).text() + '</a>');
-
-                $Item.on('click', function()
-                {
-                    $Select.find('.selected-item').text($(this).text());
-                    $Element.val($(this).text());
-                });
+                var $Item = $('<a href="#">' + $Options.eq(j).text() + '</a>');
 
                 $Container.append($Item);
+
+                $Container.find('a').on('click', function(event)
+                {
+                    event.preventDefault();
+
+                    $(this).closest('.dropdown').find('.selected-item').text($(this).text());
+                    $(this).closest('.dropdown').prev().val($(this).text());
+                    $(this).closest('.dropdown').prev().change();
+                });
             }
 
             $Select.insertAfter($Element);
@@ -107,11 +110,11 @@
             {
                 if( $(this).hasClass('expanded') )
                 {
-                    $Container.hide();
+                    $(this).find('.dropdown-container').hide();
                 }
                 else if( $(this).hasClass('collapsed') )
                 {
-                    $Container.show();
+                    $(this).find('.dropdown-container').show();
                 }
 
                 $(this).toggleClass('collapsed');

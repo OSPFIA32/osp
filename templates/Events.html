@@ -33,11 +33,23 @@
             </div>
         </div>
 
-        <div class="templates">
+        <div class="reservation-overlay">
+            <div class="reservation-edit-container">
+                <h1>Reservierung</h1>
 
+                <form class="reservation-form">
+                    <label>Suchen</label>
+                    <input type="text" name="name" placeholder="Name der Veranstaltung" class="width-50">
+                    <select hidden="hidden" name="category"></select>
+
+                    <div class="clearer"></div>
+                    <input type="submit" value="Speichern">
+                </form>
+            </div>
         </div>
 
         <script src="../js/plugins/jquery.datetimepicker.full.js"></script>
+        <script src="../js/FakeQueries.js"></script>
         <script src="../js/Event.js"></script>
         <script src="../js/templates.js"></script>
         <script src="../js/layout.js"></script>

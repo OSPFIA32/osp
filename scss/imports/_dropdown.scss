@@ -5,11 +5,11 @@ div.dropdown{
     color         : $dropdown-selected-font-color;
     font-weight   : bold;
     background    : $flat-color;
-    // background: $bright-hover-background-color;
     position      : relative;
     border-radius : 5px;
-    // border: 1px solid $main-color;
     cursor        : pointer;
+    float         : left;
+    transition    : all 0.3s linear;
     z-index       : 200;
 
     &.expanded{
@@ -29,7 +29,7 @@ div.dropdown{
         right         : 0;
         border-radius : 0 5px 5px 0;
         z-index       : 10;
-        transition    : all 0.3s linear;
+        transition    : border-radius, background 0.3s linear;
         background    : $main-color;
 
         &:hover{

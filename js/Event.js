@@ -15,7 +15,6 @@ var Event = function( settings )
     this.id           = settings.id;
     this.name         = settings.name;
     this.description  = settings.description;
-    this.image        = settings.image;
     this.userId       = settings.userId;
     this.document     = settings.document;
     this.categories   = settings.categories;

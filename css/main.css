@@ -72,6 +72,16 @@ hr.broad {
   .button:hover {
     background: #682458; }
 
+.mr20 {
+  margin-right: 20px; }
+
+h1 {
+  margin: 0;
+  margin-bottom: 20px;
+  font-size: 30px;
+  font-weight: bold;
+  color: #822D6E; }
+
 a[data-tooltip] {
   position: relative; }
   a[data-tooltip]:hover:after {
@@ -115,6 +125,8 @@ div.dropdown {
   position: relative;
   border-radius: 5px;
   cursor: pointer;
+  float: left;
+  transition: all 0.3s linear;
   z-index: 200; }
   div.dropdown.expanded {
     border-radius: 5px 5px 0px 0px; }
@@ -129,7 +141,7 @@ div.dropdown {
     right: 0;
     border-radius: 0 5px 5px 0;
     z-index: 10;
-    transition: all 0.3s linear;
+    transition: border-radius, background 0.3s linear;
     background: #822D6E; }
     div.dropdown .toggle:hover {
       background: #682458; }
@@ -178,7 +190,6 @@ div.dropdown {
 .filepicker {
   width: 100%;
   height: 40px;
-  margin-top: 20px;
   display: block;
   background: #DDD;
   box-sizing: border-box;
@@ -338,10 +349,6 @@ div.dropdown {
     padding: 20px;
     box-sizing: border-box;
     background: #CCCCCC; }
-    .webapp .details-pane .filepicker {
-      width: calc(50% - 20px);
-      margin-left: 20px;
-      float: left; }
   .webapp .inner {
     width: 100%;
     height: 100%;
@@ -352,11 +359,6 @@ div.dropdown {
     box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.75);
     overflow-y: auto;
     border-radius: 10px; }
-    .webapp .inner h1 {
-      margin: 0;
-      font-size: 30px;
-      font-weight: bold;
-      color: #822D6E; }
 
 .overlay {
   width: 100%;
@@ -401,10 +403,20 @@ div.dropdown {
       background: #FFF;
       color: #682458; }
 
+form fieldset {
+  border: none;
+  padding: 0;
+  margin: 0; }
+form label {
+  width: 100%;
+  margin-bottom: 10px;
+  color: #822D6E;
+  font-weight: bold;
+  float: left; }
 form input[type="text"], form input[type="password"] {
   width: 100%;
   height: 40px;
-  margin-top: 20px;
+  margin-bottom: 20px;
   font-size: 18px;
   color: #2d2d2d;
   padding-left: 8px;
@@ -420,7 +432,7 @@ form input[type="text"], form input[type="password"] {
 form input[type="submit"], form input[type="button"] {
   width: auto;
   height: 40px;
-  margin-top: 20px;
+  margin-bottom: 20px;
   margin-right: 5px;
   padding: 0 15px 0 15px;
   display: block;
@@ -442,7 +454,7 @@ form textarea {
   width: 100%;
   height: 150px;
   max-width: 100%;
-  margin-top: 20px;
+  margin-bottom: 20px;
   font-size: 18px;
   color: #2d2d2d;
   padding: 8px;
@@ -454,5 +466,119 @@ form textarea {
   form textarea:focus {
     border: 1px solid #822D6E;
     background: #FFF; }
+form .filepicker {
+  margin-bottom: 20px;
+  float: left; }
 form input.datetimepcker {
   margin-right: 20px; }
+form div.dropdown {
+  width: calc(50% - 20px);
+  height: 40px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  background: #DDD;
+  border-radius: 10px; }
+  form div.dropdown.expanded {
+    border-radius: 10px 10px 0px 0px;
+    border: 1px solid #822D6E;
+    background: #FFF; }
+    form div.dropdown.expanded .toggle {
+      height: calc(100% + 2px);
+      border-radius: 0 10px 0px 0px;
+      top: -1px;
+      right: -1px; }
+  form div.dropdown .toggle {
+    border-radius: 0 10px 10px 0; }
+    form div.dropdown .toggle:after {
+      top: 18px; }
+  form div.dropdown .dropdown-container {
+    width: calc(100% + 2px);
+    border-radius: 0 0 10px 10px;
+    left: -1px; }
+  form div.dropdown .selected-item {
+    padding: 12px 0 0 14px; }
+form .reservations {
+  width: 100%;
+  height: auto;
+  min-height: 100px;
+  margin-bottom: 20px;
+  display: block;
+  float: left;
+  border-radius: 10px;
+  background: #DDD;
+  overflow: hidden; }
+  form .reservations .tool-bar {
+    width: 100%;
+    height: 30px;
+    display: block;
+    background: #822D6E;
+    color: #CCC; }
+    form .reservations .tool-bar span {
+      min-width: 30px;
+      height: 30px;
+      padding: 0 8px;
+      display: block;
+      float: left;
+      background: #822D6E;
+      transition: all 0.3s linear;
+      text-align: center;
+      line-height: 30px;
+      cursor: pointer;
+      font-weight: bold;
+      box-sizing: border-box; }
+      form .reservations .tool-bar span:hover {
+        background: #682458;
+        color: #FFF; }
+  form .reservations .reservation-item {
+    width: 100%;
+    height: 30px;
+    padding-left: 8px;
+    box-sizing: border-box;
+    display: block;
+    cursor: pointer;
+    color: #822D6E;
+    background: #DDD;
+    line-height: 30px;
+    transition: all 0.1s linear; }
+    form .reservations .reservation-item.selected {
+      color: #682458;
+      font-weight: bold; }
+      form .reservations .reservation-item.selected:hover {
+        color: #FFF; }
+    form .reservations .reservation-item:nth-child(even) {
+      background: #FFF; }
+    form .reservations .reservation-item:hover {
+      background: #822D6E;
+      color: #CCC; }
+    form .reservations .reservation-item .release-state {
+      width: 150px;
+      height: 100%;
+      display: block;
+      float: right;
+      line-height: 30px;
+      padding: 0 10px;
+      font-weight: bold;
+      color: inherit;
+      transition: all 0.1s linear; }
+      form .reservations .reservation-item .release-state:hover {
+        color: #FFF; }
+
+.reservation-overlay {
+  width: 100%;
+  height: 100%;
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 500;
+  background: rgba(255, 255, 255, 0.8);
+  cursor: pointer; }
+  .reservation-overlay .reservation-edit-container {
+    width: 80%;
+    height: auto;
+    padding: 20px;
+    display: block;
+    margin: 15% auto 0 auto;
+    background: #FFF;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.3); }
