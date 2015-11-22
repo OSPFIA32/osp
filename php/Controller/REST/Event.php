@@ -22,7 +22,6 @@ class ControllerRESTEvent {
    */
   public function display() {
 
-
     if($this->request['type'] === 'GET') {
       if (empty($request['query'])) {
         //$events = EventRepository::findAll();
@@ -34,6 +33,14 @@ class ControllerRESTEvent {
     } elseif ($this->request['type'] === 'POST') {
       $data = ($this->request['data']);
       $res = EventRepository::create($data);
+
+      if($res !== 200) {
+        $return = array('status' => 'error');
+      }
+      else {
+        $return = array('status' => 'success');
+      }
+      $return = json_encode($return);
     }
     /*
     if($event !== null) {
@@ -50,7 +57,7 @@ class ControllerRESTEvent {
     }
     */
     $this->view->setTemplate($this->template);
-    $this->view->assign('outlet', '');
+    $this->view->assign('outlet', $return);
 
     return $this->view->loadTemplate();
   }
