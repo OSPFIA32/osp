@@ -44,7 +44,7 @@ class EventModel {
   public function toArray() {
     $array = array();
     foreach($this as $key => $value) {
-      $array[$key] = preg_match('/\d+/', $value) ? (int)$value : $value;
+      $array[$key] = preg_match('/^\d+$/', $value) ? (int)$value : $value;
     }
     return $array;
   }
