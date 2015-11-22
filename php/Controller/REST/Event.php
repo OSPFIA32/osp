@@ -32,8 +32,7 @@ class ControllerRESTEvent {
         //$events = EventRepository::query($request['query']);
       }
     } elseif ($this->request['type'] === 'POST') {
-      print_r($request);
-      $data = json_decode($this->request['data']['data']);
+      $data = ($this->request['data']);
       $res = EventRepository::create($data);
     }
     /*
@@ -51,7 +50,7 @@ class ControllerRESTEvent {
     }
     */
     $this->view->setTemplate($this->template);
-    $this->view->assign('outlet', '\n');
+    $this->view->assign('outlet', '');
 
     return $this->view->loadTemplate();
   }

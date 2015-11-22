@@ -80,7 +80,7 @@ class EventRepository {
       return 200;
     }
     else {
-      echo ($stmt->errorCode());
+
       return $stmt->errorCode();
     }
   }
