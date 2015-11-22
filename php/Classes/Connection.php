@@ -43,7 +43,8 @@
     * externe Instanzierung verbieten
     */
    protected function __construct() {
-     self::$_connection = new PDO(MYSQL_HOST, MYSQL_USER, MYSQL_PASS);
+
+     self::$_connection = new PDO('mysql:host=' . MYSQL_HOST . ';dbname=' . MYSQL_DATABASE, MYSQL_USER, MYSQL_PASS);
    }
  }
 
