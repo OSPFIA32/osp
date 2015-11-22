@@ -1,0 +1,19 @@
+Options +FollowSymLinks
+RewriteEngine On
+
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteCond %{SCRIPT_FILENAME} !-f
+
+RewriteRule ^login ./index.php?route=login
+RewriteRule ^login/ ./index.php?route=login
+
+RewriteRule ^impressum ./index.php?route=impressum
+RewriteRule ^impressum/ ./index.php?route=impressum
+
+RewriteRule ^events ./index.php?route=events
+RewriteRule ^events/ ./index.php?route=events
+
+RewriteRule ^api/(.*)/(\d+)$ ./index.php?route=api&model=$1&id=$2
+RewriteRule ^api/(.*)/(\d+)$/ ./index.php?route=api&model=$1&id=$2
+
+RewriteRule ^search/(.*)$ ./search.php?query=$1
