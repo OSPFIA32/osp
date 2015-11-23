@@ -85,7 +85,10 @@ class EventRepository {
     }
   }
 
-  // TEST
+  /**
+  *
+  *
+  */
   public static function query($query) {
     $connection = Connection::getInstance();
 
