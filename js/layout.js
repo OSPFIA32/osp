@@ -1,7 +1,12 @@
 (function( $, window, undefined )
 {
+    /** @namespace */
     window.Layout = {};
 
+    /**
+     * @namespace
+     * @member
+     */
     window.Layout.elements = [
         '.switch',
         '.dropdown',
@@ -9,6 +14,9 @@
         '.filepicker'
     ];
 
+    /**
+     * Initialisiert die Layout Funktionalität
+     */
     window.Layout.init = function()
     {
         window.Layout.switches();
@@ -18,11 +26,13 @@
 
         $('.datetimepicker').datetimepicker({
             dayOfWeekStart : 1,
-            lang           : 'de',
-            startDate      : '2015/11/15'
+            lang           : 'de'
         });
     };
 
+    /**
+     * Enternt alle Funktionalitäten
+     */
     window.Layout.removeAll = function()
     {
         for( var i = 0; i < window.Layout.elements.length; i++ )
@@ -33,49 +43,18 @@
         }
     };
 
+    /**
+     * Re-Initialisiert die Funktionalitöten
+     */
     window.Layout.refresh = function()
     {
         window.Layout.removeAll();
         window.Layout.init();
     };
 
-    window.Layout.switches = function()
-    {
-        var aSwitches = $('input[type=checkbox]');
-
-        for( var i = 0; i < aSwitches.length; i++ )
-        {
-            var $Element    = $(aSwitches[ i ]);
-            var $Switch     = $('<div id="test">\n    <ul>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n    </ul>\n</div>');
-            var $Labal      = $Switch.find('span.label');
-            var sState      = $Element.prop('checked') ? "on" : "off";
-            var sStateLabel = $Element.prop('checked') ? "AN" : "AUS";
-
-            $Switch.insertAfter($Element);
-            $Switch.addClass(sState);
-            $Labal.text(sStateLabel);
-
-            $Switch.on('click', function()
-            {
-                if( $(this).hasClass('off') )
-                {
-                    $(this).prev().prop('checked', true);
-                    // $(this).find('span.ball').css({left: "50px"});
-                    $Labal.text('AN');
-                }
-                else if( $(this).hasClass('on') )
-                {
-                    $(this).prev().prop('checked', false);
-                    // $(this).find('span.ball').css({left: "0px"});
-                    $Labal.text('AUS');
-                }
-
-                $(this).toggleClass('off');
-                $(this).toggleClass('on');
-            })
-        }
-    };
-
+    /**
+     * Erzeugt die Dropdowns
+     */
     window.Layout.dropDown = function()
     {
         var aSelects = $('select');
@@ -123,114 +102,9 @@
         }
     };
 
-    window.Layout.rangeSlider = function()
-    {
-        var aSlider = $('input[type=range]');
-
-        for( var i = 0; i < aSlider.length; i++ )
-        {
-            var $Element     = $(aSlider[ i ]);
-            var nMin         = parseInt($Element.attr('min'));
-            var nMax         = parseInt($Element.attr('max'));
-            var nValue       = parseInt($Element.val());
-            var nPointsCount = ( nMax - nMin ) + 1;
-
-            var $RangeSlider = $('<div>\n    <ul>\n        \n    </ul>\n</div>');
-            var $SlidingArea = $RangeSlider.find('.sliding-area');
-            var $Slider      = $RangeSlider.find('.slider');
-            var $OutputArea  = $RangeSlider.find('.output-area');
-
-            $RangeSlider.insertAfter($Element);
-
-            var nSliderCenter = $Slider.width();
-            var nPercentStep  = 100 / ( nPointsCount - 1 );
-            var nMarkerCenter = 5;
-
-            $Slider.css({ left : "calc(" + ( $Element.val() * nPercentStep ) + "% - " + nSliderCenter + "px)" });
-
-            $OutputArea.text(nValue + nMin);
-
-            for( var i = 0; i < nPointsCount; i++ )
-            {
-                var $Marker = $('<span class="marker"></span>');
-                $Marker.css({ left : "calc(" + ( i * nPercentStep ) + "% - " + nMarkerCenter + "px)" });
-
-                $SlidingArea.append($Marker);
-            }
-
-            $Slider.on('mousedown', function( event )
-            {
-                $(this).addClass('dragged');
-                $(this).css({ transition : "none" });
-
-                $(document).on('mouseup', function( event )
-                {
-                    $Slider.css({ transition : "all 0.3s linear" });
-
-                    var aPositions = [];
-
-                    for( var i = 0; i < nPointsCount; i++ )
-                    {
-                        var nPosition     = parseInt($Slider.css('left')) + nSliderCenter;
-                        var nStepPosition = ( ( nPercentStep / 100 ) * i ) * $SlidingArea.width();
-                        var nDistance     = Math.abs(nPosition - nStepPosition);
-
-                        aPositions.push(nDistance);
-                    }
-
-                    var nSmallestValue = $SlidingArea.width();
-                    var nSmallestIndex = 0;
-
-                    for( var i = 0; i < aPositions.length; i++ )
-                    {
-                        if( aPositions[ i ] < nSmallestValue )
-                        {
-                            nSmallestValue = aPositions[ i ];
-                            nSmallestIndex = i;
-                        }
-                    }
-
-                    // var nLeft 	= ( ( ( nSmallestIndex * ( nPercentStep / 100 ) ) * $SlidingArea.width() ) - nSliderCenter );
-                    var nLeft  = "calc(" + ( nSmallestIndex * nPercentStep ) + "% - " + nSliderCenter + "px)";
-                    var nValue = nSmallestIndex + nMin;
-
-                    $Slider.css({ left : nLeft });
-
-                    $Slider.removeClass('dragged');
-
-                    $Element.val(nValue);
-
-                    $OutputArea.text(nValue);
-
-                    $(document).off('mouseup');
-                })
-            });
-
-            $SlidingArea.on('mousemove', function( event )
-            {
-                if( $Slider.hasClass('dragged') )
-                {
-                    var oRect = this.getBoundingClientRect();
-                    var nLeft = ( event.pageX - oRect.left ) - nSliderCenter;
-
-                    if( ( nLeft + nSliderCenter ) < $(this).width() && nLeft + nSliderCenter > 0 )
-                    {
-                        if( ( nLeft + nSliderCenter ) > $(this).width() )
-                        {
-                            nLeft = $(this).width() - nSliderCenter;
-                        }
-                        else if( ( nLeft + nSliderCenter ) < 0 )
-                        {
-                            nLeft = nSliderCenter;
-                        }
-
-                        $Slider.css({ left : nLeft + "px" });
-                    }
-                }
-            })
-        }
-    };
-
+    /**
+     * Erzeugt den Filepicker
+     */
     window.Layout.filePicker = function()
     {
         var afilePicker = $('input[type="file"]');

@@ -240,6 +240,10 @@ form{
             border     : 1px solid $main-color;
             background : $flat-color;
         }
+
+        &.datetimepicker{
+            margin-right : 20px;
+        }
     }
 
     input[type="submit"], input[type="button"]{

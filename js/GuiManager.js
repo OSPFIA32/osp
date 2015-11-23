@@ -1,5 +1,3 @@
-(function( $, window, undefined )
-{
     /** @namespace */
     var GuiManager                = {};
     GuiManager.topbar             = $('.top-bar');
@@ -13,31 +11,34 @@
 
     /**
      * @namespace
-     * member
+     * @memberof GuiManager
      */
     GuiManager.Database = {};
     /**
      * @namespace
-     * @member
+     * @memberof GuiManager
      */
     GuiManager.SideBar = {};
     GuiManager.SideBar.aList = [];
     /**
      * @namespace
-     * @member
+     * @memberof GuiManager
      */
     GuiManager.Inventory = {};
     /**
      * @namespace
-     * @member
+     * @memberof GuiManager
      */
     GuiManager.Events = {};
     /**
      * @namespace
-     * @member
+     * @memberof GuiManager
      */
     GuiManager.Equipment = {};
 
+    /**
+     * Initialisierung des GuiManagers
+     */
     GuiManager.init = function()
     {
         GuiManager.Database.searchEvents();
@@ -130,6 +131,9 @@
         })
     };
 
+    /**
+     * Entfernt alle "overview-item" Elemente aus der Sidebar
+     */
     GuiManager.SideBar.clear = function()
     {
         GuiManager.sidebar.find('.overview-item').each(function()
@@ -138,6 +142,10 @@
         });
     };
 
+    /**
+     * Läd die Veranstaltungen in der Sidebar neu
+     * @param {Array} aEventsList
+     */
     GuiManager.SideBar.refreshEvents = function( aEventsList )
     {
         for( var i = 0; i < aEventsList.length; i++ )
@@ -153,6 +161,11 @@
         }
     };
 
+    /**
+     * Setzt den Clicklistener für die Elemente in der Sidebar
+     * @param {jQuery-Objekt} $Element
+     * @param {Object} oEvent
+     */
     GuiManager.SideBar.addClickListener = function( $Element, oEvent )
     {
         $Element.on('click', function()
@@ -161,6 +174,9 @@
         });
     };
 
+    /**
+     * Setzt die Clicklistener für den "Veransstaltunge hinzufügen Button"
+     */
     GuiManager.Events.setClickListeners = function()
     {
         GuiManager.overlay.on('click', function()
@@ -171,6 +187,10 @@
         $('.top-bar .add').on('click', GuiManager.Events.add)
     };
 
+    /**
+     * Fügt einen neues Veranstaltungefenster zum Contentbereich hinzu
+     * @param {Object} oEvent
+     */
     GuiManager.Events.add = function( oEvent )
     {
         if( GuiManager.content.children().length > 0 && $('.inner').hasClass('changed') )
@@ -198,6 +218,9 @@
         }
     };
 
+    /**
+     * Führt noch zusätzliche Funktionalitäten aus, die beim Neuerstellen einer Veranstaltung notwendig sind
+     */
     GuiManager.Events.addAdditional = function()
     {
         GuiManager.content.html(Templates.eventContent);
@@ -206,6 +229,9 @@
         GuiManager.Events.onSubmit();
     };
 
+    /**
+     * Holt sich die Kategorien und stellt sie dar
+     */
     GuiManager.Events.createCategory = function()
     {
         var aCategories = A_DUMMY_JSON_EVENTS.categories;
@@ -221,6 +247,10 @@
         });
     };
 
+    /**
+     * Befüllt ein neues Veranstaltungsfenster
+     * @param {Object} oEvent
+     */
     GuiManager.Events.fill = function( oEvent )
     {
         var $Container = GuiManager.content;
@@ -240,6 +270,9 @@
         GuiManager.Events.addChangedListener();
     };
 
+    /**
+     * Setzt den Listener der auf eine Änderung im Formular hört
+     */
     GuiManager.Events.addChangedListener = function()
     {
         var aInputElements = $('.inner input, textarea, select');
@@ -250,6 +283,9 @@
         });
     };
 
+    /**
+     * Setzt den Listener für die Reservirungen im Veranststaltungs-Formular
+     */
     GuiManager.Events.setReservationClickListeners = function()
     {
         var $Container    = $('.reservations')
@@ -287,20 +323,28 @@
         });
     };
 
+    /**
+     * Fügt eine Reservierung hinzu
+     */
     GuiManager.Events.addReservation = function()
     {
         GuiManager.reservationOverlay.show();
     };
 
+    /**
+     * Formatiert einen Datumsstring
+     * @param {String} sDate
+     * @returns {String} sNewDateTime
+     */
     GuiManager.Events.formatDate = function( sDate )
     {
         var aDateTime = sDate.split(' ');
-        var aDate = aDateTime[ 0 ].split('.');
+        var aDate     = aDateTime[ 0 ].split('.');
         var sNewDateTime;
 
-        if( aDateTime[1] !== undefined)
+        if( aDateTime[ 1 ] !== undefined )
         {
-            var aTime = aDateTime[ 1 ].split(':');
+            var aTime    = aDateTime[ 1 ].split(':');
             sNewDateTime = aDate[ 2 ] + "." + aDate[ 1 ] + "." + aDate[ 0 ] + " " + aTime[ 0 ] + ":" + aTime[ 1 ] + ":00";
         }
         else
@@ -311,6 +355,9 @@
         return sNewDateTime;
     };
 
+    /**
+     * Führt die Funktionalität beim Submit des Veranstaltungs-Formulars aus
+     */
     GuiManager.Events.onSubmit = function()
     {
         $("form.event-form").off();
@@ -320,6 +367,8 @@
 
             if( $(this).closest('.inner').hasClass('changed') )
             {
+                $(this).closest('.inner').removeClass('changed');
+
                 var sName        = $(this).find('[name="name"]').val();
                 var sDescription = $(this).find('[name="description"]').val();
                 var sStartDate   = GuiManager.Events.formatDate($(this).find('[name="startDate"]').val());
@@ -350,5 +399,3 @@
     };
 
     GuiManager.init();
-
-})(jQuery, window, undefined);

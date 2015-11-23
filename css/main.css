@@ -433,6 +433,8 @@ form input[type="text"], form input[type="password"] {
   form input[type="text"]:focus, form input[type="password"]:focus {
     border: 1px solid #822D6E;
     background: #FFF; }
+  form input[type="text"].datetimepicker, form input[type="password"].datetimepicker {
+    margin-right: 20px; }
 form input[type="submit"], form input[type="button"] {
   width: auto;
   height: 40px;

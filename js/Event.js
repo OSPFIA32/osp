@@ -1,13 +1,5 @@
 /**
- * @author Artur
- * @date 17.11.2015
- */
-
-
-/* TODO: Das ERD muss hier noch entsprechend angepasst werden */
-
-/**
- * @param settings {String}
+ * @param {JSON} settings
  * @constructor
  */
 var Event = function( settings )
@@ -23,12 +15,4 @@ var Event = function( settings )
         start : settings.startDate,
         end   : settings.endDate
     };
-};
-
-/**
- * Generiert das HTML
- */
-Event.prototype.createHtml = function()
-{
-
 };
