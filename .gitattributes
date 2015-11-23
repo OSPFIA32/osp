@@ -1,3 +1,4 @@
 js/plugins/* linguist-vendored
 css/jquery.datetimepicker.css linguist-vendored
 css/normalize.css linguist-vendored
+scss/* linguist-vendored
