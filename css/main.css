@@ -290,6 +290,10 @@ div.dropdown {
       font-size: 30px;
       padding: 0;
       line-height: 50px; }
+    .webapp .top-bar .remove {
+      font-size: 30px;
+      padding: 0;
+      line-height: 50px; }
     .webapp .top-bar .logout {
       padding: 0 10px 0 10px;
       line-height: 50px;
@@ -429,6 +433,8 @@ form input[type="text"], form input[type="password"] {
   form input[type="text"]:focus, form input[type="password"]:focus {
     border: 1px solid #822D6E;
     background: #FFF; }
+  form input[type="text"].datetimepicker, form input[type="password"].datetimepicker {
+    margin-right: 20px; }
 form input[type="submit"], form input[type="button"] {
   width: auto;
   height: 40px;

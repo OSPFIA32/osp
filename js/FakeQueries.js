@@ -1,5 +1,6 @@
-
-
+/**
+ * @namespace Test-JSONs
+ */
 var A_DUMMY_JSON_EVENTS = {
     categories : [
         "Physik",
