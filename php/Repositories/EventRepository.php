@@ -84,5 +84,64 @@ class EventRepository {
       return $stmt->errorCode();
     }
   }
+
+  // TEST
+  public static function query($query) {
+    $connection = Connection::getInstance();
+
+    $dateflag = false;
+    $usernameflag = false;
+    $nameflag = false;
+
+    if(!$connection)
+      return null;
+
+    $where = '';
+    if ($query['startDate']) {
+      $dateflag = true;
+      $where = 'startDate >= :startDate AND startDate < date_add(day,1,:startDate)';
+    }
+    if ($query['username']) {
+      $usernameflag = true;
+
+      //Get Userid from LDAP
+
+      //Dummy
+      $userid = 69;
+      if(!empty($where)) {
+        $where .= ' AND';
+      }
+      $where .= ' userID = :userid';
+    }
+    if ($query['name']) {
+      $nameflag = true;
+      if(!empty($where)) {
+        $where .= ' AND';
+      }
+      $where .= ' name LIKE :name';
+    }
+    $query = '
+      SELECT  *
+      FROM    events
+      WHERE   ' . $where;
+
+    $stmt = $connection->prepare($query);
+
+    if($dateflag)
+      $stmt->bindParam(':startDate', $query['startDate']);
+    if($userid)
+      $stmt->bindParam(':userid', $query[$userid]);
+    if($nameflag)
+      $stmt->bindParam(':name', $query['name']);
+
+    $stmt->execute();
+    $stmt->setFetchMode(PDO::FETCH_CLASS, 'EventModel');
+
+    if($event = $stmt->fetch())
+      return $event;
+    return null;
+
+  }
+
 }
 ?>

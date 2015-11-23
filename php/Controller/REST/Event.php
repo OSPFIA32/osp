@@ -30,7 +30,7 @@ class ControllerRESTEvent {
       } elseif (!empty($this->request['query']['id'])) {
         $res = EventRepository::find($this->request['query']['id']);
       } else {
-        //$events = EventRepository::query($request['query']);
+        $events = EventRepository::query($request['query']);
       }
       if($res !== null) {
         if(!is_array($res))
