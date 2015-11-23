@@ -12,18 +12,11 @@ class UserModel {
   * stores the users full name
   *
   */
-  public $username;
+  public $name;
 
-  /**
-  * stores users LDAP-accessToken
-  *
-  */
-  public $accessToken;
 
-  public function __construct($id) {
-    $this->id = (int)$id;
-    $this->username = 'fia32hurensohn';
-    $this->accessToken = "bbe2f892a19bc957fickdich";
+  public function __construct() {
+
   }
 
   public function toArray() {
@@ -33,6 +26,11 @@ class UserModel {
       $array['user'][$key] = $value;
     }
     return $array;
+  }
+
+  public function __set($prop, $val) {
+    unset($prop);
+    unset($val);
   }
 }
 

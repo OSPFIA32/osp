@@ -18,27 +18,51 @@ class ControllerRESTEvent {
   /**
    * Methode zum anzeigen des Contents.
    *
-   * @return String Content der Applikation.
+   * @return string string to display
    */
   public function display() {
-    $event = EventRepository::find($this->request['id']);
 
-    if($event !== null) {
-
-      $events = array();
-      for($i = 0; $i < 3; $i++) {
-        array_push($events, $event->toArray());
+    //Decide what to do / CREATE / UPDATE / DELETE / GET
+    // GET
+    if($this->request['type'] === 'GET') {
+      if (empty($this->request['query'])) {
+        $res = EventRepository::findAll();
+      } elseif (!empty($this->request['query']['id'])) {
+        $res = EventRepository::find($this->request['query']['id']);
+      } else {
+        $events = EventRepository::query($request['query']);
       }
-      //$res = $events;
+      if($res !== null) {
+        if(!is_array($res))
+          $res = array(0 => $res);
+        for($i = 0, $length = count($res); $i < $length; $i++) {
+          $events[$i] = $res[$i]->toArray();
+        }
 
+        $return['events'] = array_values($events);
+        $return['status'] = 'success';
 
-      $res['events'] = array_values($events);
-      $res['status'] = 'success';
-    } else {
-      $res = array('status' => 'error');
+        $return = json_encode($return);
+      } else {
+        $return = array('status' => 'error');
+      }
+    // POST
+    } elseif ($this->request['type'] === 'POST') {
+      $data = ($this->request['data']);
+      $res = EventRepository::create($data);
+
+      if($res !== 200) {
+        $return = array('status' => 'error');
+      }
+      else {
+        $return = array('status' => 'success');
+      }
+      $return = json_encode($return);
+      echo($return);
     }
+
     $this->view->setTemplate($this->template);
-    $this->view->assign('outlet', json_encode($res));
+    $this->view->assign('outlet', $return);
 
     return $this->view->loadTemplate();
   }

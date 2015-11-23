@@ -10,7 +10,5 @@ RewriteRule ^login/ ./index.php?route=login
 RewriteRule ^events ./index.php?route=events
 RewriteRule ^events/ ./index.php?route=events
 
-RewriteRule ^api/(.*)/(\d+)$ ./index.php?route=api&model=$1&id=$2
-RewriteRule ^api/(.*)/(\d+)$/ ./index.php?route=api&model=$1&id=$2
-
-RewriteRule ^search/(.*)$ ./search.php?query=$1
+RewriteRule ^api/(.*)$ ./index.php/api/$1?route=api
+RewriteRule ^api/(.*)$/ ./index.php/api/$1?route=api

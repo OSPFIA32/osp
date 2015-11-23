@@ -7,7 +7,7 @@
         '.dropdown',
         '.range-slider',
         '.filepicker'
-    ]
+    ];
 
     window.Layout.init = function()
     {
@@ -21,7 +21,7 @@
             lang           : 'de',
             startDate      : '2015/11/15'
         });
-    }
+    };
 
     window.Layout.removeAll = function()
     {
@@ -31,13 +31,13 @@
 
             $(sClass).remove();
         }
-    }
+    };
 
     window.Layout.refresh = function()
     {
         window.Layout.removeAll();
         window.Layout.init();
-    }
+    };
 
     window.Layout.switches = function()
     {
@@ -46,7 +46,7 @@
         for( var i = 0; i < aSwitches.length; i++ )
         {
             var $Element    = $(aSwitches[ i ]);
-            var $Switch     = $('<div class="switch input-component"><span class="label"></span><span class="ball"></span></div>');
+            var $Switch     = $('<div id="test">\n    <ul>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n        <li></li>\n    </ul>\n</div>');
             var $Labal      = $Switch.find('span.label');
             var sState      = $Element.prop('checked') ? "on" : "off";
             var sStateLabel = $Element.prop('checked') ? "AN" : "AUS";
@@ -74,12 +74,12 @@
                 $(this).toggleClass('on');
             })
         }
-    }
+    };
 
     window.Layout.dropDown = function()
     {
         var aSelects = $('select');
-
+        
         for( var i = 0; i < aSelects.length; i++ )
         {
             var $Element = $(aSelects[ i ]);
@@ -88,17 +88,20 @@
             var $Select    = $('<div class="dropdown collapsed"><span class="selected-item">' + $Element.find(":selected").text() + '</span><div class="dropdown-container"></div><span class="toggle"></span></div>');
             var $Container = $Select.find("div");
 
-            for( var i = 0; i < $Options.length; i++ )
+            for( var j = 0; j < $Options.length; j++ )
             {
-                var $Item = $('<a href="#">' + $Options.eq(i).text() + '</a>');
-
-                $Item.on('click', function()
-                {
-                    $Select.find('.selected-item').text($(this).text());
-                    $Element.val($(this).text());
-                })
+                var $Item = $('<a href="#">' + $Options.eq(j).text() + '</a>');
 
                 $Container.append($Item);
+
+                $Container.find('a').on('click', function(event)
+                {
+                    event.preventDefault();
+
+                    $(this).closest('.dropdown').find('.selected-item').text($(this).text());
+                    $(this).closest('.dropdown').prev().val($(this).text());
+                    $(this).closest('.dropdown').prev().change();
+                });
             }
 
             $Select.insertAfter($Element);
@@ -107,18 +110,18 @@
             {
                 if( $(this).hasClass('expanded') )
                 {
-                    $Container.hide();
+                    $(this).find('.dropdown-container').hide();
                 }
                 else if( $(this).hasClass('collapsed') )
                 {
-                    $Container.show();
+                    $(this).find('.dropdown-container').show();
                 }
 
                 $(this).toggleClass('collapsed');
                 $(this).toggleClass('expanded');
             })
         }
-    }
+    };
 
     window.Layout.rangeSlider = function()
     {
@@ -132,7 +135,7 @@
             var nValue       = parseInt($Element.val());
             var nPointsCount = ( nMax - nMin ) + 1;
 
-            var $RangeSlider = $('<div class="range-slider input-component"><span class="output-area"></span><div class="sliding-area"><span class="slider"></span></div></div>');
+            var $RangeSlider = $('<div>\n    <ul>\n        \n    </ul>\n</div>');
             var $SlidingArea = $RangeSlider.find('.sliding-area');
             var $Slider      = $RangeSlider.find('.slider');
             var $OutputArea  = $RangeSlider.find('.output-area');
@@ -201,7 +204,7 @@
 
                     $(document).off('mouseup');
                 })
-            })
+            });
 
             $SlidingArea.on('mousemove', function( event )
             {
@@ -226,7 +229,7 @@
                 }
             })
         }
-    }
+    };
 
     window.Layout.filePicker = function()
     {
@@ -235,7 +238,7 @@
         for( var i = 0; i < afilePicker.length; i++ )
         {
             var $Element    = $(afilePicker[ i ]);
-            var $FilePicker = $('<div class="filepicker"><span class="path"></span><a href="#" class="pick">Auswählen</a></div>');
+            var $FilePicker = $('<div class="filepicker"><span class="path"></span><a href="#" class="pick">Datei Auswählen</a></div>');
 
             $FilePicker.insertAfter($Element);
         }
@@ -249,8 +252,8 @@
         {
             $(this).next().find('.path').html($(this).val());
         });
-    }
+    };
 
     window.Layout.init();
 
-})(jQuery, window, undefined)
+})(jQuery, window, undefined);

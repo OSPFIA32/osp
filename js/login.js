@@ -1,98 +1,98 @@
-(function($, window, undefined)
+(function( $, window, undefined )
 {
 
-	/** @namespace */
-	var LoginManager 	= {};
+    /** @namespace */
+    var LoginManager = {};
 
-	/**
-	 * Initialisiert dem {LoginManager}
-	 */
-	LoginManager.init = function()
-	{
-		$('#login').on('submit', function(event)
-		{
-			event.preventDefault();
-			LoginManager.login();
-		});
-	}
+    /**
+     * Initialisiert dem {LoginManager}
+     */
+    LoginManager.init = function()
+    {
+        $('#login').on('submit', function( event )
+        {
+            event.preventDefault();
+            LoginManager.login();
+        });
+    };
 
-	/**
-	 * Gleich die erforderlichen Daten ab und speichert diese falls der Login stimmt
-	 */
-	LoginManager.login = function()
-	{
-		var oData = LoginManager.verificateLogin();
+    /**
+     * Gleich die erforderlichen Daten ab und speichert diese falls der Login stimmt
+     */
+    LoginManager.login = function()
+    {
+        var oData = LoginManager.verificateLogin();
 
-		if(oData === null)
-		{
-			console.error("Fehler bei der Anmeldung");
-			return;
-		}
+        if( oData === null )
+        {
+            console.error("Fehler bei der Anmeldung");
+            return;
+        }
 
-		LoginManager.createUser(oData);
-		GuiManager.clear();
+        LoginManager.createUser(oData);
+        GuiManager.clear();
 
-		if(oData.group == 0)
-		{
-			GuiManager.Admin.createGui();
-		}
-		else if(oData.group == 1)
-		{
-			GuiManager.Group1.createGui();
-		}
-		else
-		{
-			GuiManager.Group2.createGui();
-		}
-	}
+        if( oData.group == 0 )
+        {
+            GuiManager.Admin.createGui();
+        }
+        else if( oData.group == 1 )
+        {
+            GuiManager.Group1.createGui();
+        }
+        else
+        {
+            GuiManager.Group2.createGui();
+        }
+    };
 
-	/**
-	 * Überprüft die Login Daten
-	 * @return {JSON} oPackege Das empfangene Datenpaket
-	 */
-	LoginManager.verificateLogin = function()
-	{
-		// $.ajax(
-		// {
-	 //        type: "POST",
-	 //        data: $('#login').serialize(),
-	 //        url: "",
-	 //        success: function(data)
-	 //        {
+    /**
+     * Überprüft die Login Daten
+     * @return {JSON} oPackege Das empfangene Datenpaket
+     */
+    LoginManager.verificateLogin = function()
+    {
+        // $.ajax(
+        // {
+        //        type: "POST",
+        //        data: $('#login').serialize(),
+        //        url: "",
+        //        success: function(data)
+        //        {
 
-	 //        }
-  //   	});
+        //        }
+        //   	});
 
-		var oPackege = 
-		{
-			name 		: "aerotschkin",
-			id 			: 69,
-			token 		: "Hd74hCw29",
-			group 		: 0
-		}
+        var oPackege =
+            {
+                name  : "aerotschkin",
+                id    : 69,
+                token : "Hd74hCw29",
+                group : 0
+            };
 
-		return oPackege;
-	}
+        return oPackege;
+    };
 
-	/**
-	 * Instantiiert den User
-	 * @param {JSON} oData Das Datenpacket, das zur Initialisierung der {User}s notwendig ist
-	 */
-	LoginManager.createUser = function(oData)
-	{
-		LoginManager.user = new User(oData);
-	}
+    /**
+     * Instantiiert den User
+     * @param {JSON} oData Das Datenpacket, das zur Initialisierung der {User}s notwendig ist
+     */
+    LoginManager.createUser = function( oData )
+    {
+        LoginManager.user = new User(oData);
+    };
 
-	/**
-	 * @class [<User> <User>]
-	 * @param {JSON} settings Einstellungen
-	 */
-	var User = function(settings)
-	{
-		this.sName 			= settings.name 		|| "empty username";
-		this.nId 			= settings.id 			|| null;
-		this.sAccessToken 	= settings.token 		|| null;
-		this.nRightGroup 	= settings.group 		|| null;
-	}
+    /**
+     * @class [<User> <User>]
+     * @param {JSON} settings Einstellungen
+     */
+    var User = function( settings )
+    {
+        this.sName        = settings.name || "empty username";
+        this.nId          = settings.id || null;
+        this.sAccessToken = settings.token || null;
+        this.nRightGroup  = settings.group || null;
+    }
 
-})(jQuery, window, undefined)
+})(jQuery, window, undefined);

@@ -76,6 +76,7 @@
         box-shadow : 7px 0px 17px -5px rgba(0, 0, 0, 0.75);
         position   : relative;
         z-index    : 100;
+        overflow-y : auto;
 
         .overview-item{
             width      : 100%;
@@ -84,9 +85,16 @@
             background : $flat-color;
             box-sizing : border-box;
             cursor     : pointer;
+            color      : $darker-font-color;
+            transition : all 0.1s linear;
+
+            &:nth-child(odd){
+                background : $bright-hover-background-color;
+            }
 
             &:hover{
-                background : $bright-hover-background-color;
+                background : $main-color;
+                color      : $flat-color;
             }
 
             .title{
@@ -94,7 +102,7 @@
                 display     : block;
                 font-size   : 13px;
                 font-weight : bold;
-                color       : $darker-font-color;
+                color       : inherit
             }
 
             .date{
@@ -103,7 +111,7 @@
                 display    : block;
                 font-size  : 13px;
                 text-align : right;
-                color      : $darker-font-color;
+                color      : inherit
             }
 
             hr{
@@ -124,12 +132,6 @@
         padding    : 20px;
         box-sizing : border-box;
         background : #CCCCCC;
-
-        .filepicker{
-            width       : calc(50% - 20px);
-            margin-left : 20px;
-            float       : left;
-        }
     }
 
     .inner{
@@ -142,13 +144,6 @@
         box-shadow    : 0px 0px 10px 2px rgba(0, 0, 0, 0.75);
         overflow-y    : auto;
         border-radius : 10px;
-
-        h1{
-            margin      : 0;
-            font-size   : 30px;
-            font-weight : bold;
-            color       : $main-color;
-        }
     }
 }
 
@@ -159,7 +154,7 @@
     position   : absolute;
     top        : 0;
     left       : 0;
-    background : rgba(255, 255, 255, 0.8);
+    background : $container-bg-transparent-color;
     display    : none;
     cursor     : pointer;
     z-index    : 9999;
@@ -172,7 +167,7 @@
         display       : block;
         background    : $main-color;
         border-radius : 10px;
-        box-shadow: 0px 3px 11px 1px rgba(0,0,0,0.75);
+        box-shadow    : 0px 3px 11px 1px rgba(0, 0, 0, 0.75);
     }
 
     p{
@@ -207,10 +202,24 @@
 }
 
 form{
+    fieldset{
+        border  : none;
+        padding : 0;
+        margin  : 0;
+    }
+
+    label{
+        width         : 100%;
+        margin-bottom : 10px;
+        color         : $main-color;
+        font-weight   : bold;
+        float         : left;
+    }
+
     input[type="text"], input[type="password"]{
         width         : 100%;
         height        : 40px;
-        margin-top    : 20px;
+        margin-bottom : 20px;
         font-size     : 18px;
         color         : $form-font-color;
         padding-left  : 8px;
@@ -230,9 +239,10 @@ form{
     input[type="submit"], input[type="button"]{
         width         : auto;
         height        : 40px;
-        margin-top    : 20px;
+        margin-bottom : 20px;
         margin-right  : 5px;
         padding       : 0 15px 0 15px;
+        display       : block;
         font-size     : 15px;
         color         : $bright-font-color;
         background    : $main-color;
@@ -257,7 +267,7 @@ form{
         width         : 100%;
         height        : 150px;
         max-width     : 100%;
-        margin-top    : 20px;
+        margin-bottom : 20px;
         font-size     : 18px;
         color         : $form-font-color;
         padding       : 8px;
@@ -271,5 +281,164 @@ form{
             border     : 1px solid $main-color;
             background : $flat-color;
         }
+    }
+
+    .filepicker{
+        margin-bottom : 20px;
+        float         : left;
+    }
+
+    input.datetimepcker{
+        margin-right : 20px;
+    }
+
+    div.dropdown{
+        width         : calc(50% - 20px);
+        height        : 40px;
+        margin-bottom : 20px;
+        margin-left   : 20px;
+        background    : $bright-hover-background-color;
+        border-radius : 10px;
+
+        &.expanded{
+            border-radius : 10px 10px 0px 0px;
+            border        : 1px solid $main-color;
+            background    : $flat-color;
+
+            .toggle{
+                height        : calc(100% + 2px);
+                border-radius : 0 10px 0px 0px;
+                top           : -1px;
+                right         : -1px;
+            }
+        }
+
+        .toggle{
+            border-radius : 0 10px 10px 0;
+
+            &:after{
+                top : 18px;
+            }
+        }
+
+        .dropdown-container{
+            width         : calc(100% + 2px);
+            border-radius : 0 0 10px 10px;
+            left          : -1px;
+        }
+
+        .selected-item{
+            padding : 12px 0 0 14px;
+        }
+    }
+
+    .reservations{
+        width         : 100%;
+        height        : auto;
+        min-height    : 100px;
+        margin-bottom : 20px;
+        display       : block;
+        float         : left;
+        border-radius : 10px;
+        background    : $bright-hover-background-color;
+        overflow      : hidden;
+
+        .tool-bar{
+            width      : 100%;
+            height     : 30px;
+            display    : block;
+            background : $main-color;
+            color      : $bright-font-color;
+
+            span{
+                min-width   : 30px;
+                height      : 30px;
+                padding     : 0 8px;
+                display     : block;
+                float       : left;
+                background  : $main-color;
+                transition  : all 0.3s linear;
+                text-align  : center;
+                line-height : 30px;
+                cursor      : pointer;
+                font-weight : bold;
+                box-sizing  : border-box;
+
+                &:hover{
+                    background : $main-color-dark;
+                    color      : $flat-color;
+                }
+            }
+        }
+
+        .reservation-item{
+            width        : 100%;
+            height       : 30px;
+            padding-left : 8px;
+            box-sizing   : border-box;
+            display      : block;
+            cursor       : pointer;
+            color        : $main-color;
+            background   : $bright-hover-background-color;
+            line-height  : 30px;
+            transition   : all 0.1s linear;
+
+            &.selected{
+                color       : $main-color-dark;
+                font-weight : bold;
+
+                &:hover{
+                    color : $flat-color;
+                }
+            }
+
+            &:nth-child(even){
+                background : $flat-color;
+            }
+
+            &:hover{
+                background : $main-color;
+                color      : $bright-font-color;
+            }
+
+            .release-state{
+                width       : 150px;
+                height      : 100%;
+                display     : block;
+                float       : right;
+                line-height : 30px;
+                padding     : 0 10px;
+                font-weight : bold;
+                color       : inherit;
+                transition  : all 0.1s linear;
+
+                &:hover{
+                    color : $flat-color;
+                }
+            }
+        }
+    }
+}
+
+.reservation-overlay{
+    width      : 100%;
+    height     : 100%;
+    display    : none;
+    position   : absolute;
+    top        : 0;
+    left       : 0;
+    z-index    : 500;
+    background : $container-bg-transparent-color;
+    cursor     : pointer;
+
+    .reservation-edit-container{
+        width         : 80%;
+        height        : auto;
+        padding       : 20px;
+        display       : block;
+        margin        : 15% auto 0 auto;
+        background    : $flat-color;
+        border-radius : 10px;
+        box-shadow    : 0px 0px 10px 5px rgba(0, 0, 0, 0.3);
     }
 }
